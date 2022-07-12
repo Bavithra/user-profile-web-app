@@ -1,7 +1,7 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
-import { Colors } from '../styles/Colors';
-import { mediaMax } from '../styles/MediaQuery.styles';
+import { Colors } from "../styles/Colors";
+import { mediaMax } from "../styles/MediaQuery.styles";
 
 export const buttonStyle = css`
   display: flex;
@@ -25,7 +25,7 @@ export const PageContainer = styled.div`
   background-color: ${Colors.purewhite};
   min-height: calc(100vh - 177px);
 
-  ${mediaMax('md')} {
+  ${mediaMax("md")} {
     padding: 10px 18px;
   }
 `;
@@ -37,7 +37,15 @@ export const Text = styled.div`
   background-color: ${Colors.purewhite};
   min-height: calc(100vh - 177px);
 
-  ${mediaMax('md')} {
+  ${mediaMax("md")} {
     padding: 10px 18px;
   }
+`;
+
+export const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 16px;
+  position: relative;
 `;

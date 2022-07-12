@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DatePicker Block renders correctly 1`] = `
+<div
+  className="react-datepicker-wrapper"
+>
+  <div
+    className="react-datepicker__input-container"
+  >
+    <div
+      className="sc-dkzDqf fSUJtn"
+    >
+      <input
+        className="sc-eCYdqJ feQGCx"
+        onChange={[Function]}
+        type="type"
+        value=""
+      />
+      <label
+        className="sc-hKMtZM jtjkLl"
+      >
+        Select Date
+      </label>
+    </div>
+  </div>
+</div>
+`;

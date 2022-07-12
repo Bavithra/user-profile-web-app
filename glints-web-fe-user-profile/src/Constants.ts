@@ -1,4 +1,4 @@
-const DATE_FORMAT = "dd MMMM, yyyy";
+const DATE_FORMAT = "MMMM yyyy";
 
 const PAGE_PATHS = {
   PROFILE: "/",

@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WorkExperienceItem Block renders correctly 1`] = `
+<div
+  className="sc-dkzDqf fhLHNL"
+>
+  <div
+    className="sc-kDDrLX eMMeIp"
+  >
+    <div>
+      Start date
+    </div>
+    <div />
+  </div>
+  <div
+    className="sc-kDDrLX eMMeIp"
+  >
+    <div>
+      End date
+    </div>
+    <div />
+  </div>
+  <div
+    className="sc-kDDrLX eMMeIp"
+  >
+    <div>
+      Company
+    </div>
+    <div />
+  </div>
+  <div
+    className="sc-kDDrLX eMMeIp"
+  >
+    <div>
+      Job title
+    </div>
+    <div />
+  </div>
+</div>
+`;
