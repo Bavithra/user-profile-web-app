@@ -1,6 +1,19 @@
 import styled from "styled-components";
+import { FontSizes } from "../../styles/FontSizes";
 
 import { mediaMax } from "../../styles/MediaQuery.styles";
+
+export const Title = styled.h1`
+  padding: 16px;
+  margin: 16px;
+
+  ${mediaMax("md")} {
+    padding: 8px;
+    margin: 8px;
+    text-align: center;
+    font-size: ${FontSizes.size4};
+  }
+`;
 
 export const ProfilePageContainer = styled.div`
   display: flex;
@@ -20,6 +33,12 @@ export const InputContainer = styled.div`
   width: 100%;
   display: flex;
   grid-template-columns: 1fr 1fr;
+
+  ${mediaMax("md")} {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+  }
 `;
 
 export const HeaderContainer = styled.div`
@@ -88,17 +107,4 @@ export const ItemsPerPageContainer = styled.div`
     position: relative;
     align-self: flex-end;
   }
-`;
-
-export const LinkButton = styled.button`
-display: flex;
--webkit-box-align: center;
-align-items: center;
-font-size: 14px;
-font-weight: bold;
-letter-spacing: 0.9px;
-color: rgb(1, 126, 183);
-text-transform: uppercase;
-padding: 10px 20px;
-transition: all 0.1s ease-in-out 0s;
 `;

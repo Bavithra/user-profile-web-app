@@ -1,6 +1,7 @@
 import styled, { createGlobalStyle } from "styled-components";
 
 import { Colors } from "./styles/Colors";
+import { mediaMax } from "./styles/MediaQuery.styles";
 
 const GlobalStyle = createGlobalStyle`
   *,
@@ -42,11 +43,16 @@ export default GlobalStyle;
 export const AppContainer = styled.div`
   display: flex;
   padding: 30px 120px;
+
+  ${mediaMax("md")} {
+    padding: 10px;
+  }
 `;
 
 export const PageContainer = styled.div`
   position: relative;
   flex-grow: 1;
+  width: 100vw;
   position: relative;
   margin: 0px auto;
   padding: 0px 15px;

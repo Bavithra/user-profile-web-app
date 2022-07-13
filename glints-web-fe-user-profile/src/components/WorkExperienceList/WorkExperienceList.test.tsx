@@ -16,7 +16,14 @@ describe("WorkExperienceListItem Block", () => {
       },
     ];
     const tree = renderer
-      .create(<WorkExperienceList workExperiences={workExperiences} />)
+      .create(
+        <WorkExperienceList
+          workExperiences={workExperiences}
+          onAddWorkExperienceClick={function (): void {
+            throw new Error("Function not implemented.");
+          }}
+        />
+      )
       .toJSON();
     expect(tree).toMatchSnapshot();
   });

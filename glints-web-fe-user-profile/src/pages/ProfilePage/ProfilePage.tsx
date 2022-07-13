@@ -11,12 +11,12 @@ import { WorkExperience } from "../../types/WorkExperience.type";
 import {
   DetailsContainer,
   InputContainer,
-  LinkButton,
   ProfilePageContainer,
+  Title,
 } from "./ProfilePage.styles";
 
 export default function ProfilePage() {
-  const [name, setName] = useState<string>();
+  const [name, setName] = useState<string>("");
   const [age, setAge] = useState<string>();
 
   const [isWorkExperienceModalOpen, setIsWorkExperienceModalOpen] =
@@ -24,7 +24,7 @@ export default function ProfilePage() {
 
   const [workExperiences, setWorkExperiences] = useState<WorkExperience[]>([]);
 
-  function handleClick() {
+  function handleAddWorkExperienceClick() {
     setIsWorkExperienceModalOpen(true);
   }
 
@@ -41,35 +41,37 @@ export default function ProfilePage() {
   }
 
   return (
-    <ProfilePageContainer>
-      <div>
-        <ImageUpload />
-      </div>
-      <DetailsContainer>
-        {name}
-
-        <InputContainer>
-          <TextInput
-            label="Name"
-            value={name}
-            onChange={handleLastNameChange}
+    <>
+      {name.length > 0 && <Title> Hello {name}</Title>}
+      <ProfilePageContainer>
+        <div>
+          <ImageUpload />
+        </div>
+        <DetailsContainer>
+          <InputContainer>
+            <TextInput
+              label="Name"
+              value={name}
+              onChange={handleLastNameChange}
+            />
+            <TextInput
+              label="Age"
+              type="number"
+              value={age}
+              onChange={handleAgeChange}
+            />
+          </InputContainer>
+          <WorkExperienceList
+            workExperiences={workExperiences}
+            onAddWorkExperienceClick={handleAddWorkExperienceClick}
           />
-          <TextInput
-            label="Age"
-            type="number"
-            value={age}
-            onChange={handleAgeChange}
-          />
-        </InputContainer>
-        <WorkExperienceList workExperiences={workExperiences} />
-
-        <LinkButton onClick={handleClick}>Add Work Experience</LinkButton>
-      </DetailsContainer>
-      <WorkExperienceAddModal
-        isOpen={isWorkExperienceModalOpen}
-        setIsWorkExperienceModalOpen={setIsWorkExperienceModalOpen}
-        onSaveButtonClick={handleSaveButtonClick}
-      />
-    </ProfilePageContainer>
+        </DetailsContainer>
+        <WorkExperienceAddModal
+          isOpen={isWorkExperienceModalOpen}
+          setIsWorkExperienceModalOpen={setIsWorkExperienceModalOpen}
+          onSaveButtonClick={handleSaveButtonClick}
+        />
+      </ProfilePageContainer>
+    </>
   );
 }

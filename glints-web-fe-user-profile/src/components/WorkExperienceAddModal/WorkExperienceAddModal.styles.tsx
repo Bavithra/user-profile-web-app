@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { FontWeights } from '../../styles/FontWeights';
+import styled from "styled-components";
+import { FontWeights } from "../../styles/FontWeights";
 
 export const WorkExperienceAddModalContainer = styled.div`
   display: flex;
@@ -36,4 +36,16 @@ export const WorkExperienceAddModalFooter = styled.div`
   flex-shrink: 0;
   justify-content: center;
   font-size: 14px;
+`;
+
+export const Company = styled.div`
+  display: flex;
+  align-items: center;
+  padding-right: 16px;
+`;
+
+export const CompanyLogoTitle = styled.div`
+  color: #257942;
+  font-size: 12px;
+  text-align: center;
 `;

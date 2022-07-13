@@ -26,7 +26,8 @@ export const PageContainer = styled.div`
   min-height: calc(100vh - 177px);
 
   ${mediaMax("md")} {
-    padding: 10px 18px;
+    margin: 0;
+    padding: 0;
   }
 `;
 

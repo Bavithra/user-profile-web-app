@@ -1,8 +1,14 @@
 import React from "react";
-import { InputFields } from "../../enums/InputFields.enum";
-import { InputContainer } from "../../pages/ProfilePage/ProfilePage.styles";
+
 import { WorkExperience } from "../../types/WorkExperience.type";
-import { WorkDetail } from "./WorkExperienceListItem.styles";
+import {
+  Container,
+  Globe,
+  Line,
+  WorkExperienceContainer,
+  WorkExperienceDetail,
+  WorkExperiencePeriod,
+} from "./WorkExperienceListItem.styles";
 
 type Props = {
   workExperience: WorkExperience;
@@ -12,27 +18,17 @@ export default function WorkExperienceListItem(props: Props) {
   const { workExperience } = props;
 
   return (
-    <InputContainer>
-      <WorkDetail>
-        <div>{InputFields.StartDate}</div>
-        <div>{workExperience["start-date"]}</div>
-      </WorkDetail>
-      <WorkDetail>
-        <div>{InputFields.EndDate}</div>
-        <div>{workExperience["end-date"]}</div>
-      </WorkDetail>
-      <WorkDetail>
-        <div>{InputFields.Company}</div>
+    <Container>
+      <Globe />
+      <Line />
+      <WorkExperienceContainer>
+      <img alt="logo" src={workExperience["company-logo"]} />
+      <WorkExperienceDetail>
+        <h3>{workExperience["job-title"]}</h3>
         <div>{workExperience.company}</div>
-      </WorkDetail>
-      <WorkDetail>
-        <div>{InputFields.JobTitle}</div>
-        <div>{workExperience["job-title"]}</div>
-      </WorkDetail>
-      <WorkDetail>
-        <div>{InputFields.JobTitle}</div>
-        <div>{workExperience["job-description"]}</div>
-      </WorkDetail>
-    </InputContainer>
+        <WorkExperiencePeriod>{`${workExperience["start-date"]} - ${workExperience["end-date"]}`}</WorkExperiencePeriod>
+      </WorkExperienceDetail>
+      </WorkExperienceContainer>
+    </Container>
   );
 }

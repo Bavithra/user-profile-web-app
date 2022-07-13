@@ -14,6 +14,8 @@ import {
   Header,
   WorkExperienceAddModalFooter,
   PresentCompany,
+  Company,
+  CompanyLogoTitle,
 } from "./WorkExperienceAddModal.styles";
 
 type Props = {
@@ -60,6 +62,16 @@ export default function WorkExperienceAddModal(props: Props) {
     onCancelClick();
   }
 
+  function setCompanyDetails(value: string): void {
+    updateWorkExperience("company", value);
+    updateWorkExperience(
+      "company-logo",
+      `https://logo.clearbit.com/${value
+        .replace(/\s/g, "")
+        .toLowerCase()}.com?size=60`
+    );
+  }
+
   return (
     <Modal isOpen={isOpen} onClose={onCancelClick}>
       <WorkExperienceAddModalContainer>
@@ -100,6 +112,10 @@ export default function WorkExperienceAddModal(props: Props) {
           <PresentCompany>
             <input
               type="checkbox"
+              checked={
+                DateTimeUtil.getDisplayDateWithDay(new Date()) ===
+                workExperience["end-date"]
+              }
               onChange={(event) =>
                 updateWorkExperience(
                   "end-date",
@@ -117,17 +133,27 @@ export default function WorkExperienceAddModal(props: Props) {
             value={workExperience["job-title"]}
             onChange={(value) => updateWorkExperience("job-title", value)}
           />
-          <TextInput
-            label="Company"
-            value={workExperience.company}
-            onChange={(value) => updateWorkExperience("company", value)}
-          />
 
-          <TextInput
-            label="Company Logo"
-            value={workExperience["company-logo"]}
-            onChange={(value) => updateWorkExperience("company-logo", value)}
-          />
+          <Company>
+            <TextInput
+              label="Company"
+              value={workExperience.company}
+              onChange={(value) => setCompanyDetails(value)}
+            />
+            <CompanyLogoTitle>
+              logo
+              <img
+                alt="Click here or type the company name to upload"
+                src={workExperience["company-logo"]}
+                onError={(e) => {
+                  updateWorkExperience(
+                    "company-logo",
+                    "https://plugins.jetbrains.com/files/19441/190795/icon/pluginIcon.svg"
+                  );
+                }}
+              />
+            </CompanyLogoTitle>
+          </Company>
           <TextInput
             label="Job description"
             value={workExperience["job-description"]}
