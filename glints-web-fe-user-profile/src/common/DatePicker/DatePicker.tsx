@@ -14,15 +14,17 @@ type Props = {
   onChange: (date: Date) => void;
   isMonthPicker?: boolean;
   dateFormat?: string;
+  minDate? : Date;
 };
 
 export default function DatePicker(props: Props) {
   const {
     selectedDate,
     placeholder,
+    onChange,
     isMonthPicker = false,
     dateFormat = DATE_FORMAT,
-    onChange,
+    minDate
   } = props;
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -45,6 +47,7 @@ export default function DatePicker(props: Props) {
       dateFormat={dateFormat}
       showMonthYearPicker={isMonthPicker}
       showYearDropdown
+      minDate={minDate}
       maxDate={new Date()}
       customInput={
         <Container>

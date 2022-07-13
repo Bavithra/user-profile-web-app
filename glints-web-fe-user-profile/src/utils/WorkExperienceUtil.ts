@@ -1,3 +1,5 @@
+import { WorkExperience } from "../types/WorkExperience.type";
+
 function getInitialWorkExperienceInput() {
   return {
     id: "",
@@ -10,6 +12,16 @@ function getInitialWorkExperienceInput() {
   };
 }
 
+function shouldSaveButtonDisable(workExperience: WorkExperience) {
+  return (
+    workExperience["start-date"] === "" ||
+    workExperience["end-date"] === "" ||
+    workExperience.company === "" ||
+    workExperience["job-title"] === ""
+  );
+}
+
 export default {
   getInitialWorkExperienceInput,
+  shouldSaveButtonDisable
 };

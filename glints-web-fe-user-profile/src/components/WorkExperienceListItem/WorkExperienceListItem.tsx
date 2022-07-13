@@ -34,6 +34,7 @@ export default function WorkExperienceListItem(props: Props) {
           <h3>{workExperience["job-title"]}</h3>
           <div>{workExperience.company}</div>
           <WorkExperiencePeriod>{`${workExperience["start-date"]} - ${workExperience["end-date"]}`}</WorkExperiencePeriod>
+          <div>Job Description: {workExperience["job-description"]}</div>
         </WorkExperienceDetail>
 
         <ActionIconContainer>

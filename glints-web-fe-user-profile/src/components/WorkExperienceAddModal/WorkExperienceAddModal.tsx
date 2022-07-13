@@ -4,6 +4,7 @@ import DatePicker from "../../common/DatePicker";
 
 import Modal from "../../common/Modal";
 import TextInput from "../../common/TextInput";
+import { MAX_TEXTAREA_INPUT } from "../../Constants";
 import { Text } from "../../styles/Common.styles";
 import { WorkExperience } from "../../types/WorkExperience.type";
 import DateTimeUtil from "../../utils/DateTimeUtil";
@@ -17,6 +18,7 @@ import {
   PresentCompany,
   Company,
   CompanyLogoTitle,
+  TextArea,
 } from "./WorkExperienceAddModal.styles";
 
 type Props = {
@@ -81,7 +83,7 @@ export default function WorkExperienceAddModal(props: Props) {
                 ? new Date(workExperience["start-date"])
                 : undefined
             }
-            placeholder={"Start Date"}
+            placeholder={"Start Date*"}
             isMonthPicker={true}
             onChange={(value) =>
               updateWorkExperience(
@@ -97,7 +99,8 @@ export default function WorkExperienceAddModal(props: Props) {
                 ? new Date(workExperience["end-date"])
                 : undefined
             }
-            placeholder={"End Date"}
+            placeholder={"End Date*"}
+            minDate={new Date(workExperience["start-date"])}
             isMonthPicker={true}
             onChange={(value) =>
               updateWorkExperience(
@@ -126,14 +129,14 @@ export default function WorkExperienceAddModal(props: Props) {
           </PresentCompany>
 
           <TextInput
-            label="Job title"
+            label="Job title*"
             value={workExperience["job-title"]}
             onChange={(value) => updateWorkExperience("job-title", value)}
           />
 
           <Company>
             <TextInput
-              label="Company"
+              label="Company*"
               value={workExperience.company}
               onChange={(value) => setCompanyDetails(value)}
             />
@@ -151,16 +154,25 @@ export default function WorkExperienceAddModal(props: Props) {
               />
             </CompanyLogoTitle>
           </Company>
-          <TextInput
-            label="Job description"
+
+          <TextArea
+            placeholder={"Job description(optional)"}
+            maxLength={MAX_TEXTAREA_INPUT}
             value={workExperience["job-description"]}
-            onChange={(value) => updateWorkExperience("job-description", value)}
+            onChange={(value) =>
+              updateWorkExperience("job-description", value.target.value)
+            }
           />
         </WorkExperienceAddModalInfo>
 
         <WorkExperienceAddModalFooter>
           <Button onClick={() => onActionButtonClick()}>CANCEL</Button>
-          <Button onClick={() => onActionButtonClick(workExperience)}>
+          <Button
+            isDisable={WorkExperienceUtil.shouldSaveButtonDisable(
+              workExperience
+            )}
+            onClick={() => onActionButtonClick(workExperience)}
+          >
             SAVE
           </Button>
         </WorkExperienceAddModalFooter>

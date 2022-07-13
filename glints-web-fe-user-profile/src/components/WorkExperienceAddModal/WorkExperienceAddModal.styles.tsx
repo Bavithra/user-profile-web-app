@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { Colors } from "../../styles/Colors";
+import { FontSizes } from "../../styles/FontSizes";
 import { FontWeights } from "../../styles/FontWeights";
 
 export const WorkExperienceAddModalContainer = styled.div`
@@ -48,4 +50,16 @@ export const CompanyLogoTitle = styled.div`
   color: #257942;
   font-size: 12px;
   text-align: center;
+`;
+
+export const TextArea = styled.textarea`
+  border-radius: 0;
+  display: flex;
+  font-size: 100%;
+  height: 80px;
+  margin: 16px;
+  font-family: Noto Sans, sans-serif;
+  border: 0;
+  border: 1px solid ${Colors.grey4};
+  color: #000;
 `;

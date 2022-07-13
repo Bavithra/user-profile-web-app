@@ -1,4 +1,5 @@
 import React, { ChangeEvent } from "react";
+import { MAX_TEXT_INPUT } from "../../Constants";
 import { InputContainer } from "../../styles/Common.styles";
 import { Input, Label } from "./TextInput.styles";
 
@@ -33,7 +34,7 @@ export default function TextInput(props: Props) {
         value={value}
         hasValue={hasValue()}
         onChange={handleChange}
-        maxLength={200}
+        maxLength={MAX_TEXT_INPUT}
         min="0"
       />
       <Label hasValue={hasValue()}>{label}</Label>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import ImageUpload from "../../common/ImageUpload";
 import TextInput from "../../common/TextInput";
@@ -15,6 +15,8 @@ import {
   Title,
 } from "./ProfilePage.styles";
 import WorkExperienceUtil from "../../utils/WorkExperienceUtil";
+import Button from "../../common/Button";
+import { Text } from "../../styles/Common.styles";
 
 export default function ProfilePage() {
   const [name, setName] = useState<string>("");
@@ -53,6 +55,10 @@ export default function ProfilePage() {
     setAge(value);
   }
 
+  function handleProfileSaveClick() {
+    //TODO: implement call to post api
+  }
+
   function handleSaveButtonClick(workExperience: WorkExperience) {
     if (selectedIndex === -1) {
       const value = {
@@ -77,23 +83,35 @@ export default function ProfilePage() {
         <DetailsContainer>
           <InputContainer>
             <TextInput
-              label="Name"
+              label="Name*"
               value={name}
               onChange={handleLastNameChange}
             />
             <TextInput
-              label="Age"
+              label="Age*"
               type="number"
               value={age}
               onChange={handleAgeChange}
             />
           </InputContainer>
+          <Text>
+            Please save all the changes you have made to the profile by clicking
+            the below button
+          </Text>
+
+          <Button
+            isDisable={name === "" || age === undefined || age === ''}
+            onClick={handleProfileSaveClick}
+          >
+            SAVE PROFILE
+          </Button>
           <WorkExperienceList
             workExperiences={workExperiences}
             onAddWorkExperienceClick={handleAddWorkExperienceClick}
             onDeleteWorkExperienceClick={handleDeleteWorkExperienceClick}
           />
         </DetailsContainer>
+
         <WorkExperienceAddModal
           isOpen={isWorkExperienceModalOpen}
           workExperience={workExperience}

@@ -25,14 +25,16 @@ export const Line = styled.div`
 `;
 
 export const WorkExperienceContainer = styled.div`
-display: flex;
-padding-left: 40px;
-align-items: center;
+  display: flex;
+  padding-left: 40px;
+  align-items: center;
 `;
 
 export const WorkExperienceDetail = styled.div`
-  padding: 24px 4px;
+  padding: 24px 0px;
+  padding-right: 74px;
   margin-left: 12px;
+  overflow-wrap: anywhere;
 `;
 
 export const WorkExperiencePeriod = styled.div`
