@@ -11,19 +11,21 @@ import {
   NoDataContainer,
   Title,
 } from "./WorkExperienceList.styles";
+import WorkExperienceUtil from "../../utils/WorkExperienceUtil";
 
 type Props = {
   workExperiences: WorkExperience[];
-  onAddWorkExperienceClick: () => void;
+  onAddWorkExperienceClick: (workExperience: WorkExperience, index: number) => void;
+  onDeleteWorkExperienceClick: (index: number) => void;
 };
 
 export default function WorkExperienceList(props: Props) {
-  const { workExperiences, onAddWorkExperienceClick } = props;
+  const { workExperiences, onAddWorkExperienceClick, onDeleteWorkExperienceClick } = props;
 
   function getWorkExperienceList(workExperiences: WorkExperience[]) {
     return workExperiences.map((workExperience, index) => {
       return (
-        <WorkExperienceListItem key={index} workExperience={workExperience} />
+        <WorkExperienceListItem key={index} index={index} workExperience={workExperience} onEditClicked={onAddWorkExperienceClick} onDeleteClicked={onDeleteWorkExperienceClick} />
       );
     });
   }
@@ -33,7 +35,7 @@ export default function WorkExperienceList(props: Props) {
       <Title>
         WORK EXPERIENCE
         {workExperiences.length > 0 && (
-          <LinkButton onClick={onAddWorkExperienceClick}>
+          <LinkButton onClick={() => onAddWorkExperienceClick(WorkExperienceUtil.getInitialWorkExperienceInput(), -1)}>
             <FontAwesomeIcon icon={faCirclePlus} size={"sm"} />
             Add Work Experience
           </LinkButton>
@@ -45,7 +47,7 @@ export default function WorkExperienceList(props: Props) {
           77.9% of employers surveyed consider work experience to be a crucial
           data point in job applications. So be sure to fill up this section to
           raise your chances of securing an interview!
-          <LinkButton onClick={onAddWorkExperienceClick}>
+          <LinkButton onClick={() => onAddWorkExperienceClick(WorkExperienceUtil.getInitialWorkExperienceInput(), -1)}>
             <FontAwesomeIcon icon={faCirclePlus} size={"sm"} />
             Add Work Experience
           </LinkButton>

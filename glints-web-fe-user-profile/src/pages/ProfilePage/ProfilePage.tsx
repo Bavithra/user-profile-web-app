@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import ImageUpload from "../../common/ImageUpload";
 import TextInput from "../../common/TextInput";
@@ -14,18 +14,35 @@ import {
   ProfilePageContainer,
   Title,
 } from "./ProfilePage.styles";
+import WorkExperienceUtil from "../../utils/WorkExperienceUtil";
 
 export default function ProfilePage() {
   const [name, setName] = useState<string>("");
   const [age, setAge] = useState<string>();
+  const [selectedIndex, setSelectedIndex] = useState<number>(-1);
 
   const [isWorkExperienceModalOpen, setIsWorkExperienceModalOpen] =
     useState(false);
 
   const [workExperiences, setWorkExperiences] = useState<WorkExperience[]>([]);
+  const [workExperience, setWorkExperience] = useState<WorkExperience>(
+    WorkExperienceUtil.getInitialWorkExperienceInput()
+  );
 
-  function handleAddWorkExperienceClick() {
+  function handleAddWorkExperienceClick(
+    workExperience: WorkExperience,
+    index: number
+  ) {
+    setWorkExperience(workExperience);
+    setSelectedIndex(index);
     setIsWorkExperienceModalOpen(true);
+  }
+
+  function handleDeleteWorkExperienceClick(index: number) {
+    const tempArray = workExperiences;
+    tempArray.splice(index, 1);
+    setSelectedIndex(index);
+    setWorkExperiences(tempArray);
   }
 
   function handleLastNameChange(value: string) {
@@ -37,7 +54,17 @@ export default function ProfilePage() {
   }
 
   function handleSaveButtonClick(workExperience: WorkExperience) {
-    setWorkExperiences([...workExperiences, workExperience]);
+    if (selectedIndex === -1) {
+      const value = {
+        ...workExperience,
+        id: `${workExperience.company}-${workExperience["start-date"]}-${workExperience["end-date"]}}`,
+      };
+      setWorkExperiences([...workExperiences, value]);
+    } else {
+      const tempArray = workExperiences;
+      tempArray[selectedIndex] = workExperience;
+      setWorkExperiences(tempArray);
+    }
   }
 
   return (
@@ -64,11 +91,14 @@ export default function ProfilePage() {
           <WorkExperienceList
             workExperiences={workExperiences}
             onAddWorkExperienceClick={handleAddWorkExperienceClick}
+            onDeleteWorkExperienceClick={handleDeleteWorkExperienceClick}
           />
         </DetailsContainer>
         <WorkExperienceAddModal
           isOpen={isWorkExperienceModalOpen}
+          workExperience={workExperience}
           setIsWorkExperienceModalOpen={setIsWorkExperienceModalOpen}
+          setWorkExperience={setWorkExperience}
           onSaveButtonClick={handleSaveButtonClick}
         />
       </ProfilePageContainer>

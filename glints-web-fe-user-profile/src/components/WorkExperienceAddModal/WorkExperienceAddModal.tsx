@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { SetStateAction, useCallback } from "react";
 import Button from "../../common/Button";
 import DatePicker from "../../common/DatePicker";
 
@@ -7,6 +7,7 @@ import TextInput from "../../common/TextInput";
 import { Text } from "../../styles/Common.styles";
 import { WorkExperience } from "../../types/WorkExperience.type";
 import DateTimeUtil from "../../utils/DateTimeUtil";
+import WorkExperienceUtil from "../../utils/WorkExperienceUtil";
 
 import {
   WorkExperienceAddModalContainer,
@@ -20,24 +21,20 @@ import {
 
 type Props = {
   isOpen: boolean;
+  workExperience: WorkExperience;
+  setWorkExperience: React.Dispatch<SetStateAction<WorkExperience>>;
   setIsWorkExperienceModalOpen: (shouldShowModal: boolean) => void;
   onSaveButtonClick: (workExperience: WorkExperience) => void;
 };
 
-const initialInput: WorkExperience = {
-  "start-date": "",
-  "end-date": "",
-  "job-title": "",
-  company: "",
-  "company-logo": "",
-  "job-description": "",
-};
-
 export default function WorkExperienceAddModal(props: Props) {
-  const { isOpen, setIsWorkExperienceModalOpen, onSaveButtonClick } = props;
-
-  const [workExperience, setWorkExperience] =
-    useState<WorkExperience>(initialInput);
+  const {
+    isOpen,
+    workExperience,
+    setIsWorkExperienceModalOpen,
+    setWorkExperience,
+    onSaveButtonClick,
+  } = props;
 
   function onCancelClick() {
     setIsWorkExperienceModalOpen(false);
@@ -58,7 +55,7 @@ export default function WorkExperienceAddModal(props: Props) {
       onSaveButtonClick(workExperience);
     }
 
-    setWorkExperience(initialInput);
+    setWorkExperience(WorkExperienceUtil.getInitialWorkExperienceInput());
     onCancelClick();
   }
 

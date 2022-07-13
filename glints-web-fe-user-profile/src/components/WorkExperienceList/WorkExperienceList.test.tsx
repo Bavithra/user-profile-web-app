@@ -7,6 +7,7 @@ describe("WorkExperienceListItem Block", () => {
   it("renders correctly", () => {
     let workExperiences: WorkExperience[] = [
       {
+        id: "",
         "start-date": "",
         "end-date": "",
         "job-title": "",
@@ -20,6 +21,9 @@ describe("WorkExperienceListItem Block", () => {
         <WorkExperienceList
           workExperiences={workExperiences}
           onAddWorkExperienceClick={function (): void {
+            throw new Error("Function not implemented.");
+          }}
+          onDeleteWorkExperienceClick={function (): void {
             throw new Error("Function not implemented.");
           }}
         />

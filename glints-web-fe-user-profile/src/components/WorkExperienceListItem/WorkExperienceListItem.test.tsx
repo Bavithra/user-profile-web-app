@@ -6,6 +6,7 @@ import WorkExperienceListItem from "./WorkExperienceListItem";
 describe("WorkExperienceListItem Block", () => {
   it("renders correctly", () => {
     let workExperience: WorkExperience = {
+      id: "",
       "start-date": "",
       "end-date": "",
       "job-title": "",
@@ -14,7 +15,18 @@ describe("WorkExperienceListItem Block", () => {
       "job-description": "",
     };
     const tree = renderer
-      .create(<WorkExperienceListItem workExperience={workExperience} />)
+      .create(
+        <WorkExperienceListItem
+        index={-1}
+          workExperience={workExperience}
+          onEditClicked={function (): void {
+            throw new Error("Function not implemented.");
+          }}
+          onDeleteClicked={function (): void {
+            throw new Error("Function not implemented.");
+          }}
+        />
+      )
       .toJSON();
     expect(tree).toMatchSnapshot();
   });

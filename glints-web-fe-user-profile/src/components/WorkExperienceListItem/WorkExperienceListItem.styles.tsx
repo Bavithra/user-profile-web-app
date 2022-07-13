@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -36,4 +37,13 @@ export const WorkExperienceDetail = styled.div`
 
 export const WorkExperiencePeriod = styled.div`
   color: #616161;
+`;
+
+export const ActionIcon = styled(FontAwesomeIcon)`
+  margin: 5px;
+`;
+
+export const ActionIconContainer = styled.div`
+  position: absolute;
+  right: 0;
 `;
