@@ -18,7 +18,7 @@ export const DetailsContainer = styled.div`
 
 export const InputContainer = styled.div`
   width: 100%;
-  display: grid;
+  display: flex;
   grid-template-columns: 1fr 1fr;
 `;
 
@@ -88,4 +88,17 @@ export const ItemsPerPageContainer = styled.div`
     position: relative;
     align-self: flex-end;
   }
+`;
+
+export const LinkButton = styled.button`
+display: flex;
+-webkit-box-align: center;
+align-items: center;
+font-size: 14px;
+font-weight: bold;
+letter-spacing: 0.9px;
+color: rgb(1, 126, 183);
+text-transform: uppercase;
+padding: 10px 20px;
+transition: all 0.1s ease-in-out 0s;
 `;

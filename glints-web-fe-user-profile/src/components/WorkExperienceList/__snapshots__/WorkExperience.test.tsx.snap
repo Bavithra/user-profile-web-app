@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`WorkExperienceItem Block renders correctly 1`] = `
+exports[`WorkExperienceListItem Block renders correctly 1`] = `
 <div
   className="sc-dkzDqf fhLHNL"
 >
   <div
-    className="sc-kDDrLX eMMeIp"
+    className="sc-iqcoie hsCuro"
   >
     <div>
       Start date
@@ -13,7 +13,7 @@ exports[`WorkExperienceItem Block renders correctly 1`] = `
     <div />
   </div>
   <div
-    className="sc-kDDrLX eMMeIp"
+    className="sc-iqcoie hsCuro"
   >
     <div>
       End date
@@ -21,7 +21,7 @@ exports[`WorkExperienceItem Block renders correctly 1`] = `
     <div />
   </div>
   <div
-    className="sc-kDDrLX eMMeIp"
+    className="sc-iqcoie hsCuro"
   >
     <div>
       Company
@@ -29,7 +29,7 @@ exports[`WorkExperienceItem Block renders correctly 1`] = `
     <div />
   </div>
   <div
-    className="sc-kDDrLX eMMeIp"
+    className="sc-iqcoie hsCuro"
   >
     <div>
       Job title

@@ -8,19 +8,34 @@ exports[`DatePicker Block renders correctly 1`] = `
     className="react-datepicker__input-container"
   >
     <div
-      className="sc-dkzDqf fSUJtn"
+      className="sc-ftvSup laBHLg"
+      disabled={false}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      readOnly={false}
+      value=""
     >
-      <input
-        className="sc-eCYdqJ feQGCx"
-        onChange={[Function]}
-        type="type"
-        value=""
-      />
-      <label
-        className="sc-hKMtZM jtjkLl"
+      <div
+        onClick={[Function]}
       >
-        Select Date
-      </label>
+        <div
+          className="sc-dkzDqf fSUJtn"
+        >
+          <input
+            className="sc-kDDrLX emimmX"
+            onChange={[Function]}
+            type="type"
+          />
+          <label
+            className="sc-jqUVSM dsSNWu"
+          >
+            Select Date
+          </label>
+        </div>
+      </div>
     </div>
   </div>
 </div>

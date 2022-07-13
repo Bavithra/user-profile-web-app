@@ -1,6 +1,6 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from "styled-components";
 
-import { Colors } from './styles/Colors';
+import { Colors } from "./styles/Colors";
 
 const GlobalStyle = createGlobalStyle`
   *,
@@ -41,11 +41,15 @@ export default GlobalStyle;
 
 export const AppContainer = styled.div`
   display: flex;
+  padding: 30px 120px;
 `;
 
 export const PageContainer = styled.div`
   position: relative;
   flex-grow: 1;
+  position: relative;
+  margin: 0px auto;
+  padding: 0px 15px;
   background-color: ${Colors.purewhite};
 `;
 

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { mediaMax } from '../../styles/MediaQuery.styles';
+
 export const ModalRoot = styled.div`
   display: flex;
   position: fixed;
@@ -30,4 +32,8 @@ export const ModalDialog = styled.div`
   border-radius: 8px;
   overflow-y: auto;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.7);
+
+  ${mediaMax('md')} {
+    width: 95vw;
+  }
 `;

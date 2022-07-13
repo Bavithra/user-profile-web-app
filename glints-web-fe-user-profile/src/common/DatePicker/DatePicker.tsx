@@ -1,54 +1,73 @@
 import React, { useState } from "react";
-
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { DATE_FORMAT } from "../../Constants";
-import DateTimeUtil from "../../utils/DateTimeUtil";
-import TextInput from "../TextInput";
 
-import "./DatePicker.scss";
+import DateTimeUtil from "../../utils/DateTimeUtil";
+
+import TextInput from "../TextInput";
+import { DATE_FORMAT } from "../../Constants";
+import { Container } from "./DatePicker.styles";
 
 type Props = {
   selectedDate: Date | undefined;
   placeholder: string;
-  onChange: (date: Date | null) => void;
+  onChange: (date: Date) => void;
+  isMonthPicker?: boolean;
+  dateFormat?: string;
 };
 
 export default function DatePicker(props: Props) {
-  const { selectedDate, placeholder, onChange } = props;
-
+  const {
+    selectedDate,
+    placeholder,
+    isMonthPicker = false,
+    dateFormat = DATE_FORMAT,
+    onChange,
+  } = props;
   const [isOpen, setIsOpen] = useState<boolean>(false);
-
-  function handleTextInputDateChange(value: string) {
-    onChange(new Date(value));
-  }
 
   function handleClick() {
     setIsOpen(!isOpen);
+  }
+
+  function handleSelectedDateChange(value: string) {
+    onChange(DateTimeUtil.toDate(value)!);
   }
 
   return (
     <ReactDatePicker
       open={isOpen}
       preventOpenOnFocus={true}
-      selected={selectedDate}
       onChange={onChange}
-      dateFormat={DATE_FORMAT}
       onClickOutside={handleClick}
+      selected={selectedDate}
       onSelect={handleClick}
-      showMonthYearPicker
-      showFullMonthYearPicker
-      showFourColumnMonthYearPicker
+      dateFormat={dateFormat}
+      showMonthYearPicker={isMonthPicker}
+      showYearDropdown
+      maxDate={new Date()}
       customInput={
-        selectedDate ? (
-          <TextInput
-            label={placeholder}
-            value={DateTimeUtil.getDisplayDateWithDay(selectedDate)}
-            onChange={handleTextInputDateChange}
-          />
-        ) : (
-          <TextInput label={placeholder} onChange={handleTextInputDateChange} />
-        )
+        <Container>
+          <div onClick={handleClick}>
+            {selectedDate ? (
+              <TextInput
+                readOnly={isMonthPicker}
+                label={placeholder}
+                value={DateTimeUtil.getDisplayDateWithDay(
+                  selectedDate,
+                  dateFormat
+                )}
+                onChange={handleSelectedDateChange}
+              />
+            ) : (
+              <TextInput
+                readOnly={isMonthPicker}
+                label={placeholder}
+                onChange={handleSelectedDateChange}
+              />
+            )}
+          </div>
+        </Container>
       }
     />
   );

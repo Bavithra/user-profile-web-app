@@ -1,20 +1,20 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { WorkExperience } from "../../types/WorkExperience.type";
-import WorkExperienceItem from "./WorkExperience";
+import WorkExperienceListItem from "./WorkExperienceListItem";
 
-describe("WorkExperienceItem Block", () => {
+describe("WorkExperienceListItem Block", () => {
   it("renders correctly", () => {
     let workExperience: WorkExperience = {
       "start-date": "",
       "end-date": "",
-      "job-date": "",
+      "job-title": "",
       company: "",
       "company-logo": "",
       "job-description": "",
     };
     const tree = renderer
-      .create(<WorkExperienceItem workExperience={workExperience} />)
+      .create(<WorkExperienceListItem workExperience={workExperience} />)
       .toJSON();
     expect(tree).toMatchSnapshot();
   });

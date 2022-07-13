@@ -25,8 +25,15 @@ export const Header = styled.div`
   color: rgb(55, 22, 80);
 `;
 
-export const InputContainer = styled.div`
+export const PresentCompany = styled.div`
+  display: flex;
+  margin-left: 20px;
+`;
+
+export const WorkExperienceAddModalFooter = styled.div`
+  display: flex;
   width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  flex-shrink: 0;
+  justify-content: center;
+  font-size: 14px;
 `;

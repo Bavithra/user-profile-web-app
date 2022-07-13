@@ -1,51 +1,43 @@
 import React, { useState } from "react";
-import Button from "../../common/Button";
+
 import ImageUpload from "../../common/ImageUpload";
 import TextInput from "../../common/TextInput";
-import WorkExperienceItem from "../../components/WorkExperience";
+
+import WorkExperienceList from "../../components/WorkExperienceList";
 import WorkExperienceAddModal from "../../components/WorkExperienceAddModal";
+
 import { WorkExperience } from "../../types/WorkExperience.type";
 
 import {
   DetailsContainer,
   InputContainer,
+  LinkButton,
   ProfilePageContainer,
 } from "./ProfilePage.styles";
 
 export default function ProfilePage() {
   const [name, setName] = useState<string>();
-  const [workExperiences, setWorkExperiences] = useState<WorkExperience[]>([
-    {
-      "start-date": "23-03-2018",
-      "end-date": "23-03-2018",
-      "job-date": "23-03-2018",
-      company: "23-03-2018",
-      "company-logo": "23-03-2018",
-      "job-description": "23-03-2018",
-    },
-  ]);
+  const [age, setAge] = useState<string>();
 
+  const [isWorkExperienceModalOpen, setIsWorkExperienceModalOpen] =
+    useState(false);
+
+  const [workExperiences, setWorkExperiences] = useState<WorkExperience[]>([]);
+
+  function handleClick() {
+    setIsWorkExperienceModalOpen(true);
+  }
 
   function handleLastNameChange(value: string) {
     setName(value);
   }
 
-  function handleSaveButtonClick() {
-    setWorkExperiences((previousExperiences) => {
-      const value = {
-        "start-date": "23-03-2018",
-        "end-date": "23-03-2018",
-        "job-date": "23-03-2018",
-        company: "23-03-2018",
-        "company-logo": "23-03-2018",
-        "job-description": "23-03-2018",
-      };
+  function handleAgeChange(value: string) {
+    setAge(value);
+  }
 
-      return {
-        ...previousExperiences,
-        value,
-      };
-    });
+  function handleSaveButtonClick(workExperience: WorkExperience) {
+    setWorkExperiences([...workExperiences, workExperience]);
   }
 
   return (
@@ -62,19 +54,22 @@ export default function ProfilePage() {
             value={name}
             onChange={handleLastNameChange}
           />
-          <TextInput label="Age" value={name} onChange={handleLastNameChange} />
+          <TextInput
+            label="Age"
+            type="number"
+            value={age}
+            onChange={handleAgeChange}
+          />
         </InputContainer>
-        {workExperiences.length > 0 &&
-          workExperiences.map((workExperience, index) => {
-            return (
-              <WorkExperienceItem key={index} workExperience={workExperience} />
-            );
-          })}
-       
-        <Button onClick={handleSaveButtonClick}>Save</Button>
-        <Button>Cancel</Button>
+        <WorkExperienceList workExperiences={workExperiences} />
+
+        <LinkButton onClick={handleClick}>Add Work Experience</LinkButton>
       </DetailsContainer>
-      <WorkExperienceAddModal isOpen={true} />
+      <WorkExperienceAddModal
+        isOpen={isWorkExperienceModalOpen}
+        setIsWorkExperienceModalOpen={setIsWorkExperienceModalOpen}
+        onSaveButtonClick={handleSaveButtonClick}
+      />
     </ProfilePageContainer>
   );
 }

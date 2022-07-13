@@ -5,11 +5,13 @@ import { Input, Label } from "./TextInput.styles";
 type Props = {
   label: string;
   onChange: (value: string) => void;
+  type?: string;
   value?: string;
+  readOnly?: boolean;
 };
 
 export default function TextInput(props: Props) {
-  const { label, value, onChange } = props;
+  const { label, value, readOnly = false, type = "string", onChange } = props;
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     onChange(e.target.value);
@@ -26,10 +28,13 @@ export default function TextInput(props: Props) {
   return (
     <InputContainer>
       <Input
-        type={"type"}
+        readOnly={readOnly}
+        type={type}
         value={value}
         hasValue={hasValue()}
         onChange={handleChange}
+        maxLength={200}
+        min="0"
       />
       <Label hasValue={hasValue()}>{label}</Label>
     </InputContainer>
