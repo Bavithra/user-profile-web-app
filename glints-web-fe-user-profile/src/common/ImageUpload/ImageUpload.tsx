@@ -24,8 +24,6 @@ export default function ImageUpload(props: Props) {
     let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = function () {
-      console.log(reader.result);
-
       setFileSelected(reader.result);
     };
     reader.onerror = function (error) {

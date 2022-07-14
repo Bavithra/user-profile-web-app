@@ -6,6 +6,8 @@ import TextInput from "../../common/TextInput";
 import WorkExperienceList from "../../components/WorkExperienceList";
 import WorkExperienceAddModal from "../../components/WorkExperienceAddModal";
 
+import { RootState } from "../../state/reducer/root-reducer";
+
 import { WorkExperience } from "../../types/WorkExperience.type";
 
 import {
@@ -21,11 +23,17 @@ import UserProfileApi from "../../api/UserProfileApi";
 import ConfirmationModal from "../../components/ConfirmationModal";
 import Spinner from "../../common/Spinner";
 import { DEFAULT_IMAGE } from "../../Constants";
+import { saveUser } from "../../state/slices/user-slice";
+import { UserProfile } from "../../types/UserProfile.type";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function ProfilePage() {
-  const [name, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [age, setAge] = useState<string>();
+
+  const {user} = useSelector((state: RootState) => state.user);
+console.log(useSelector((state: RootState) => state.user))
+  const [name, setName] = useState<string>(user?.name || '');
+  const [email, setEmail] = useState<string>(user?.email || '');
+  const [age, setAge] = useState<string>(user?.age || '');
   const [fileSelected, setFileSelected] = useState<
     string | ArrayBuffer | null
   >();
@@ -37,11 +45,13 @@ export default function ProfilePage() {
   const [isUpdateConfirmationModalOpen, setIsUpdateConfirmationOpen] =
     useState(false);
 
-  const [workExperiences, setWorkExperiences] = useState<WorkExperience[]>([]);
+  const [workExperiences, setWorkExperiences] = useState<WorkExperience[]>(user?.["work-experience"] || []);
   const [workExperience, setWorkExperience] = useState<WorkExperience>(
     WorkExperienceUtil.getInitialWorkExperienceInput()
   );
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const dispatch = useDispatch();
 
   function handleAddWorkExperienceClick(
     workExperience: WorkExperience,
@@ -53,7 +63,7 @@ export default function ProfilePage() {
   }
 
   function handleDeleteWorkExperienceClick(index: number) {
-    const tempArray = workExperiences;
+    const tempArray = [...workExperiences];
     tempArray.splice(index, 1);
     setSelectedIndex(index);
     setWorkExperiences(tempArray);
@@ -86,30 +96,24 @@ export default function ProfilePage() {
   }
 
   async function handleProfileSaveClick() {
+    const user: UserProfile = {
+      email: email,
+      name: name,
+      age: age || "",
+      "profile-image": fileSelected?.toString(),
+      "work-experience": workExperiences,
+    };
+
+    dispatch(saveUser(user));
+
     try {
       setIsLoading(true);
 
       const response = await UserProfileApi.getUser(email);
       if (response.data) {
-        const payload = {
-          email: email,
-          name: name,
-          age: age || "",
-          "profile-image": fileSelected?.toString(),
-          "work-experience": workExperiences,
-        };
-
-        await UserProfileApi.updateUser(payload);
+        await UserProfileApi.updateUser(user);
       } else {
-        const payload = {
-          email: email,
-          name: name,
-          age: age || "",
-          "profile-image": fileSelected?.toString(),
-          "work-experience": workExperiences,
-        };
-
-        await UserProfileApi.createUser(payload);
+        await UserProfileApi.createUser(user);
       }
     } catch (e) {
       console.log(e);
@@ -129,7 +133,7 @@ export default function ProfilePage() {
         workExperiences == null ? [value] : [...workExperiences, value]
       );
     } else {
-      const tempArray = workExperiences;
+      const tempArray = [...workExperiences];
       tempArray[selectedIndex] = workExperience;
       setWorkExperiences(tempArray);
     }

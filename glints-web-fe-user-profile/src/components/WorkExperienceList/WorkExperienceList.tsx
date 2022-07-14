@@ -44,19 +44,23 @@ export default function WorkExperienceList(props: Props) {
   }
 
   function getWorkExperienceList(workExperiences: WorkExperience[]) {
-    const sortedArray = workExperiences?.sort(sortByDate);
+    console.log("workExperiences", workExperiences);
+    const sortedArray = [...workExperiences];
+    sortedArray?.sort(sortByDate);
 
-    return sortedArray?.map((workExperience, index) => {
-      return (
-        <WorkExperienceListItem
-          key={index}
-          index={index}
-          workExperience={workExperience}
-          onEditClicked={onAddWorkExperienceClick}
-          onDeleteClicked={onDeleteWorkExperienceClick}
-        />
-      );
-    });
+    return sortedArray.length > 0
+      ? sortedArray?.map((workExperience: WorkExperience, index: number) => {
+          return (
+            <WorkExperienceListItem
+              key={index}
+              index={index}
+              workExperience={workExperience}
+              onEditClicked={onAddWorkExperienceClick}
+              onDeleteClicked={onDeleteWorkExperienceClick}
+            />
+          );
+        })
+      : null;
   }
 
   return (
@@ -78,7 +82,7 @@ export default function WorkExperienceList(props: Props) {
         )}
       </Title>
 
-      {(workExperiences === null || workExperiences?.length === 0) && (
+      {workExperiences === null || workExperiences?.length === 0 ? (
         <NoDataContainer>
           77.9% of employers surveyed consider work experience to be a crucial
           data point in job applications. So be sure to fill up this section to
@@ -95,8 +99,9 @@ export default function WorkExperienceList(props: Props) {
             Add Work Experience
           </LinkButton>
         </NoDataContainer>
+      ) : (
+        getWorkExperienceList(workExperiences)
       )}
-      {getWorkExperienceList(workExperiences)}
     </>
   );
 }
