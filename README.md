@@ -21,3 +21,17 @@ This application is to enter user details Name, Email, Profile picture, Age and 
 - Able to fetch the existing information by entering the email -> upon entering email and clicking outside the app will check if there are existing profile for the same email id and it will fetch the details if present
 - While entering company name, the company logo will automatically be loaded via Clearbit API
 - Used Redux Persist so the data will be stored incase of connection loss and will persist
+
+## 🔎 Hosting
+
+
+Web App frontend is Hosted using Netlify
+[![Deploy](https://d33wubrfki0l68.cloudfront.net/65a18ef24e011fbc0b5ddb411d611c0e1d1111a6/17e0b/images/deploy-button.svg)](https://gleaming-beignet-d30838.netlify.app/)
+
+Backend is Hosted in Heroku 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://glints-web-be-user-profile.herokuapp.com)
+
+## 🔎 Hosting Links
+
+Web App -> https://gleaming-beignet-d30838.netlify.app/
+Backend -> https://glints-web-be-user-profile.herokuapp.com
