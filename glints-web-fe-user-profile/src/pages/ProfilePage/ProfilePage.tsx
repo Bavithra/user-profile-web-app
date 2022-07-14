@@ -14,6 +14,7 @@ import {
   DetailsContainer,
   InputContainer,
   ProfilePageContainer,
+  SubmitContainer,
   Title,
 } from "./ProfilePage.styles";
 import WorkExperienceUtil from "../../utils/WorkExperienceUtil";
@@ -28,12 +29,11 @@ import { UserProfile } from "../../types/UserProfile.type";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function ProfilePage() {
+  const { user } = useSelector((state: RootState) => state.user);
 
-  const {user} = useSelector((state: RootState) => state.user);
-
-  const [name, setName] = useState<string>(user?.name || '');
-  const [email, setEmail] = useState<string>(user?.email || '');
-  const [age, setAge] = useState<string>(user?.age || '');
+  const [name, setName] = useState<string>(user?.name || "");
+  const [email, setEmail] = useState<string>(user?.email || "");
+  const [age, setAge] = useState<string>(user?.age || "");
   const [fileSelected, setFileSelected] = useState<
     string | ArrayBuffer | null
   >();
@@ -45,7 +45,9 @@ export default function ProfilePage() {
   const [isUpdateConfirmationModalOpen, setIsUpdateConfirmationOpen] =
     useState(false);
 
-  const [workExperiences, setWorkExperiences] = useState<WorkExperience[]>(user?.["work-experience"] || []);
+  const [workExperiences, setWorkExperiences] = useState<WorkExperience[]>(
+    user?.["work-experience"] || []
+  );
   const [workExperience, setWorkExperience] = useState<WorkExperience>(
     WorkExperienceUtil.getInitialWorkExperienceInput()
   );
@@ -156,7 +158,11 @@ export default function ProfilePage() {
       if (response.data) {
         setName(response.data.name);
         setAge(response.data.age);
-        setFileSelected(response.data["profile-image"] === "undefined" ? DEFAULT_IMAGE : response.data["profile-image"]);
+        setFileSelected(
+          response.data["profile-image"] === "undefined"
+            ? DEFAULT_IMAGE
+            : response.data["profile-image"]
+        );
         setWorkExperiences(response.data["work-experience"]);
       }
     } catch (error) {
@@ -196,19 +202,24 @@ export default function ProfilePage() {
               onChange={handleAgeChange}
             />
           </InputContainer>
-          <Text>
-            Please remember to save all the changes(name, image, email, age and work experience) you have made to the profile by clicking
-            the below button
-          </Text>
 
-          <Button
-            isDisable={
-              name === "" || email === "" || age === undefined || age === ""
-            }
-            onClick={handleProfileSaveClick}
-          >
-            SAVE CHANGES
-          </Button>
+          <SubmitContainer>
+            <Text>
+              Please remember to save all the changes(name, image, email, age
+              and work experience) you have made to the profile by clicking the
+              below button
+            </Text>
+
+            <Button
+              isDisable={
+                name === "" || email === "" || age === undefined || age === ""
+              }
+              onClick={handleProfileSaveClick}
+            >
+              SAVE CHANGES
+            </Button>
+          </SubmitContainer>
+
           <WorkExperienceList
             workExperiences={workExperiences}
             onAddWorkExperienceClick={handleAddWorkExperienceClick}

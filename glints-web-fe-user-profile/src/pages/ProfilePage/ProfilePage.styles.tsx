@@ -29,6 +29,12 @@ export const DetailsContainer = styled.div`
   width: 100%;
 `;
 
+export const SubmitContainer = styled.div`
+  ${mediaMax("md")} {
+    text-align: center;
+  }
+`;
+
 export const InputContainer = styled.div`
   width: 100%;
   display: flex;
