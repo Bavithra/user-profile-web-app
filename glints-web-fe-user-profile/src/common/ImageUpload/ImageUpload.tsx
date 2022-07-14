@@ -54,7 +54,7 @@ export default function ImageUpload(props: Props) {
         accept="image/*"
         onChange={handleInputChange}
       />
-      <div>Please upload image less than 5MB</div>
+      <div>Please upload image less than 40KB due to free tier limit</div>
     </ImageContainer>
   );
 }

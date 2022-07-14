@@ -1,6 +1,6 @@
 {
   "name": "Node.js PostgreSQL Demo",
   "description": "A basic Node.js API using Express and PostgreSQL",
-  "repository": "https://github.com/geshan/nodejs-posgresql",
+  "repository": "https://github.com/Bavithra/web-app-user-profile/tree/main/glints-web-fe-user-profile",
   "keywords": ["node", "express", "postgresql"]
 }
