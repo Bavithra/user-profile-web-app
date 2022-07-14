@@ -44,7 +44,6 @@ export default function WorkExperienceList(props: Props) {
   }
 
   function getWorkExperienceList(workExperiences: WorkExperience[]) {
-    console.log("workExperiences", workExperiences);
     const sortedArray = [...workExperiences];
     sortedArray?.sort(sortByDate);
 

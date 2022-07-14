@@ -30,7 +30,7 @@ import { useDispatch, useSelector } from "react-redux";
 export default function ProfilePage() {
 
   const {user} = useSelector((state: RootState) => state.user);
-console.log(useSelector((state: RootState) => state.user))
+
   const [name, setName] = useState<string>(user?.name || '');
   const [email, setEmail] = useState<string>(user?.email || '');
   const [age, setAge] = useState<string>(user?.age || '');

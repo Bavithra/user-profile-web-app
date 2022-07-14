@@ -21,7 +21,19 @@ function shouldSaveButtonDisable(workExperience: WorkExperience) {
   );
 }
 
+function getBase64(file: File, setFile: React.Dispatch<React.SetStateAction<string | ArrayBuffer | null | undefined>>) {
+  let reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = function () {
+    setFile(reader.result);
+  };
+  reader.onerror = function (error) {
+    return;
+  };
+}
+
 export default {
   getInitialWorkExperienceInput,
-  shouldSaveButtonDisable
+  shouldSaveButtonDisable,
+  getBase64
 };

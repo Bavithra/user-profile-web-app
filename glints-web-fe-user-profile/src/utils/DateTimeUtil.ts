@@ -12,15 +12,19 @@ function getDisplayDateWithDay(date: Date, dateFormat: string = DATE_FORMAT) {
   return date.toString();
 }
 
-function toDate(date: string) {
-  const isValidDate = isValid(date);
 
-  if (isValidDate) {
-    return new Date(date);
-  }
+function getDate(startDate: string): Date | undefined {
+  return startDate.length > 0 ? new Date(startDate) : undefined;
+}
+
+function getEndDate(checked: boolean, endDate: string): string {
+  return checked
+    ? getDisplayDateWithDay(new Date())
+    : endDate;
 }
 
 export default {
   getDisplayDateWithDay,
-  toDate,
+  getDate,
+  getEndDate,
 };

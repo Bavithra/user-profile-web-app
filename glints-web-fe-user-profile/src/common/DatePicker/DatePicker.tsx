@@ -33,7 +33,7 @@ export default function DatePicker(props: Props) {
   }
 
   function handleSelectedDateChange(value: string) {
-    onChange(DateTimeUtil.toDate(value)!);
+    onChange(new Date(value)!);
   }
 
   return (

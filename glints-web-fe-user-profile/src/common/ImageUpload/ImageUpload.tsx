@@ -6,6 +6,7 @@ import Avatar from "../../assets/avatar.png";
 import Button from "../Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import WorkExperienceUtil from "../../utils/WorkExperienceUtil";
 
 type Props = {
   fileSelected: string | ArrayBuffer | null;
@@ -20,16 +21,6 @@ export default function ImageUpload(props: Props) {
     fileInputRef.current && fileInputRef.current.click();
   }
 
-  function getBase64(file: File) {
-    let reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = function () {
-      setFileSelected(reader.result);
-    };
-    reader.onerror = function (error) {
-      return;
-    };
-  }
 
   function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
     if (event.target.files === null || event.target.files.length === 0) {
@@ -44,8 +35,7 @@ export default function ImageUpload(props: Props) {
       if (e === null || e.target === null) {
         return;
       }
-
-      getBase64(file);
+      WorkExperienceUtil.getBase64(file, setFileSelected);
     };
 
     reader.readAsText(file);
@@ -64,6 +54,7 @@ export default function ImageUpload(props: Props) {
         accept="image/*"
         onChange={handleInputChange}
       />
+      <div>Please upload image less than 5MB</div>
     </ImageContainer>
   );
 }

@@ -11,6 +11,29 @@ describe('DateTimeUtil', () => {
       const result = 'July 2022';
 
       expect(DateTimeUtil.getDisplayDateWithDay(dateTime)).toBe(result);
+      expect(DateTimeUtil.getDisplayDateWithDay('invalid')).toBe('invalid');
+
     });
   });
+
+  describe('getDate', () => {
+    it('should return the formatted date', () => {
+      const date = 'July 2022';
+      const result = new Date(date);
+
+      expect(DateTimeUtil.getDate(date)).toMatchObject(result);
+    });
+  });
+
+  describe('getEndDate', () => {
+    it('should return the formatted date', () => {
+      const date = 'July 2022';
+      const result = 'July 2022';
+
+      expect(DateTimeUtil.getEndDate(true, date)).toBe(DateTimeUtil.getDisplayDateWithDay(new Date()));
+      expect(DateTimeUtil.getEndDate(false, date)).toBe(result);
+    });
+  });
+  
+  
 });

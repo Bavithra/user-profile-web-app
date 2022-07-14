@@ -41,7 +41,7 @@ export default function WorkExperienceAddModal(props: Props) {
   function onCancelClick() {
     setIsWorkExperienceModalOpen(false);
   }
-  
+
   const updateWorkExperience = useCallback(
     (inputKey: keyof WorkExperience, value: string) => {
       setWorkExperience((previousInputs) => ({
@@ -78,11 +78,7 @@ export default function WorkExperienceAddModal(props: Props) {
           <Header>ADD WORK EXPERIENCE</Header>
 
           <DatePicker
-            selectedDate={
-              workExperience["start-date"].length > 0
-                ? new Date(workExperience["start-date"])
-                : undefined
-            }
+            selectedDate={DateTimeUtil.getDate(workExperience["start-date"])}
             placeholder={"Start Date*"}
             isMonthPicker={true}
             onChange={(value) =>
@@ -94,11 +90,7 @@ export default function WorkExperienceAddModal(props: Props) {
           />
 
           <DatePicker
-            selectedDate={
-              workExperience["end-date"].length > 0
-                ? new Date(workExperience["end-date"])
-                : undefined
-            }
+            selectedDate={DateTimeUtil.getDate(workExperience["end-date"])}
             placeholder={"End Date*"}
             minDate={new Date(workExperience["start-date"])}
             isMonthPicker={true}
@@ -119,9 +111,7 @@ export default function WorkExperienceAddModal(props: Props) {
               onChange={(event) =>
                 updateWorkExperience(
                   "end-date",
-                  event.target.checked
-                    ? DateTimeUtil.getDisplayDateWithDay(new Date())
-                    : workExperience["end-date"]
+                  DateTimeUtil.getEndDate(event.target.checked, workExperience["end-date"])
                 )
               }
             />
@@ -180,3 +170,4 @@ export default function WorkExperienceAddModal(props: Props) {
     </Modal>
   );
 }
+
