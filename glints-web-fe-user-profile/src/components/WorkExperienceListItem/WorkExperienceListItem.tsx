@@ -1,5 +1,5 @@
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import WorkExperienceApi from "../../api/WorkExperienceApi";
 import Spinner from "../../common/Spinner";
 import { Colors } from "../../styles/Colors";
@@ -30,14 +30,24 @@ export default function WorkExperienceListItem(props: Props) {
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const [logo, setLogo] = useState<string>(
-    `https://logo.clearbit.com/${workExperience.company
-      .replace(/\s/g, "")
-      .toLowerCase()}.com?size=60`
-  );
+  const [logo, setLogo] = useState<string>('https://plugins.jetbrains.com/files/19441/190795/icon/pluginIcon.svg');
+
+  useEffect(() => {
+    setLogo(
+      `https://logo.clearbit.com/${workExperience.company
+        .replace(/\s/g, "")
+        .toLowerCase()}.com?size=60`
+    )
+  });
+
 
   const onDeleteWorkExperience = useCallback(async () => {
     try {
+      if(workExperience.id === "") {
+        onDeleteClicked(index);
+        return;
+      }
+
       setIsLoading(true);
       const response = await WorkExperienceApi.deleteWorkExperience(
         workExperience.id!

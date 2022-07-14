@@ -67,9 +67,16 @@ export default function ProfilePage() {
   }
 
   async function handleEmailBlur() {
-    const response = await UserProfileApi.getUser(email);
-    if (response.data) {
-      setIsUpdateConfirmationOpen(true);
+    try {
+      setIsLoading(true);
+      const response = await UserProfileApi.getUser(email);
+      if (response.data) {
+        setIsUpdateConfirmationOpen(true);
+      }
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -116,7 +123,10 @@ export default function ProfilePage() {
         ...workExperience,
         id: "",
       };
-      setWorkExperiences([...workExperiences, value]);
+
+      setWorkExperiences(
+        workExperiences == null ? [value] : [...workExperiences, value]
+      );
     } else {
       const tempArray = workExperiences;
       tempArray[selectedIndex] = workExperience;
