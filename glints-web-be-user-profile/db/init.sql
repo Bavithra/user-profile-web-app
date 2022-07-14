@@ -4,10 +4,8 @@ CREATE TABLE user_profile
   email TEXT NOT NULL,
   user_full_name TEXT NOT NULL,
   user_age NUMERIC NOT NULL,
-  created_by TEXT DEFAULT NULL,
-  updated_by TEXT DEFAULT NULL,
-  created_at TIMESTAMPTZ DEFAULT NOW(),
-  updated_at TIMESTAMPTZ
+    created_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    updated_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
 CREATE TABLE user_work_experience
@@ -19,8 +17,9 @@ CREATE TABLE user_work_experience
   company TEXT NOT NULL,
   job_title TEXT NOT NULL,
   job_description TEXT,
-  created_by TEXT DEFAULT NULL,
-  updated_by TEXT DEFAULT NULL,
-  created_at TIMESTAMPTZ DEFAULT NOW(),
-  updated_at TIMESTAMPTZ
+    created_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    updated_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
+
+ALTER TABLE user_profile
+  ADD COLUMN profile_image TEXT NULL;
