@@ -20,6 +20,7 @@ import { Text } from "../../styles/Common.styles";
 import UserProfileApi from "../../api/UserProfileApi";
 import ConfirmationModal from "../../components/ConfirmationModal";
 import Spinner from "../../common/Spinner";
+import { DEFAULT_IMAGE } from "../../Constants";
 
 export default function ProfilePage() {
   const [name, setName] = useState<string>("");
@@ -151,7 +152,7 @@ export default function ProfilePage() {
       if (response.data) {
         setName(response.data.name);
         setAge(response.data.age);
-        setFileSelected(response.data["profile-image"]);
+        setFileSelected(response.data["profile-image"] === "undefined" ? DEFAULT_IMAGE : response.data["profile-image"]);
         setWorkExperiences(response.data["work-experience"]);
       }
     } catch (error) {
@@ -192,7 +193,7 @@ export default function ProfilePage() {
             />
           </InputContainer>
           <Text>
-            Please save all the changes you have made to the profile by clicking
+            Please remember to save all the changes(name, image, email, age and work experience) you have made to the profile by clicking
             the below button
           </Text>
 

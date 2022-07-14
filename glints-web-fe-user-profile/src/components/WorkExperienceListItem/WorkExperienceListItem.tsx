@@ -30,20 +30,22 @@ export default function WorkExperienceListItem(props: Props) {
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const [logo, setLogo] = useState<string>('https://plugins.jetbrains.com/files/19441/190795/icon/pluginIcon.svg');
+  const [logo, setLogo] = useState<string>(workExperience["company-logo"] || '');
 
   useEffect(() => {
-    setLogo(
-      `https://logo.clearbit.com/${workExperience.company
+    try {
+      setLogo(`https://logo.clearbit.com/${workExperience.company
         .replace(/\s/g, "")
-        .toLowerCase()}.com?size=60`
-    )
-  });
-
+        .toLowerCase()}.com?size=60`)
+    } catch (error) {
+      setLogo(
+        "https://plugins.jetbrains.com/files/19441/190795/icon/pluginIcon.svg")
+    }
+  },[workExperience]);
 
   const onDeleteWorkExperience = useCallback(async () => {
     try {
-      if(workExperience.id === "") {
+      if (workExperience.id === "") {
         onDeleteClicked(index);
         return;
       }
@@ -89,8 +91,7 @@ export default function WorkExperienceListItem(props: Props) {
           src={logo}
           onError={(e) => {
             setLogo(
-              "https://plugins.jetbrains.com/files/19441/190795/icon/pluginIcon.svg"
-            );
+              "https://plugins.jetbrains.com/files/19441/190795/icon/pluginIcon.svg")
           }}
         />
 
