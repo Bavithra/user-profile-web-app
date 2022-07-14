@@ -2,13 +2,13 @@
 
 exports[`App Block renders correctly 1`] = `
 <div
-  className="sc-bczRLJ emMGHK"
+  className="sc-bczRLJ eiwdIu"
 >
   <div
-    className="sc-gsnTZi kboxJM"
+    className="sc-gsnTZi eTWJbb"
   >
     <div
-      className="sc-crXcEl dCdxNq"
+      className="sc-himrzO ivdkva"
     >
       <div>
         <div
@@ -20,7 +20,8 @@ exports[`App Block renders correctly 1`] = `
             src="avatar.png"
           />
           <button
-            className="sc-iBkjds lgvluO"
+            className="sc-iBkjds hqHqVC"
+            disabled={false}
             onClick={[Function]}
           >
             <svg
@@ -53,23 +54,27 @@ exports[`App Block renders correctly 1`] = `
         </div>
       </div>
       <div
-        className="sc-evZas csYxrp"
+        className="sc-gXmSlM iUhnBC"
       >
         <div
-          className="sc-breuTD UhMSh"
+          className="sc-cCsOjp bWZBNe"
         >
           <div
             className="sc-jqUVSM iZwDiP"
           >
             <input
               className="sc-iqcoie dtCliV"
+              maxLength={200}
+              min="0"
               onChange={[Function]}
-              type="type"
+              readOnly={false}
+              type="string"
+              value=""
             />
             <label
               className="sc-kDDrLX eLBSyp"
             >
-              Name
+              Name*
             </label>
           </div>
           <div
@@ -77,66 +82,83 @@ exports[`App Block renders correctly 1`] = `
           >
             <input
               className="sc-iqcoie dtCliV"
+              maxLength={200}
+              min="0"
+              onBlur={[Function]}
               onChange={[Function]}
-              type="type"
+              readOnly={false}
+              type="string"
+              value=""
             />
             <label
               className="sc-kDDrLX eLBSyp"
             >
-              Age
+              Email*
+            </label>
+          </div>
+          <div
+            className="sc-jqUVSM iZwDiP"
+          >
+            <input
+              className="sc-iqcoie dtCliV"
+              maxLength={200}
+              min="0"
+              onChange={[Function]}
+              readOnly={false}
+              type="number"
+            />
+            <label
+              className="sc-kDDrLX eLBSyp"
+            >
+              Age*
             </label>
           </div>
         </div>
         <div
-          className="sc-breuTD UhMSh"
+          className="sc-papXJ dCVwsM"
         >
-          <div
-            className="sc-kgflAQ jpEOJq"
-          >
-            <div>
-              Start date
-            </div>
-            <div>
-              23-03-2018
-            </div>
-          </div>
-          <div
-            className="sc-kgflAQ jpEOJq"
-          >
-            <div>
-              End date
-            </div>
-            <div>
-              23-03-2018
-            </div>
-          </div>
-          <div
-            className="sc-kgflAQ jpEOJq"
-          >
-            <div>
-              Company
-            </div>
-            <div>
-              23-03-2018
-            </div>
-          </div>
-          <div
-            className="sc-kgflAQ jpEOJq"
-          >
-            <div>
-              Job title
-            </div>
-            <div>
-              23-03-2018
-            </div>
-          </div>
+          Please save all the changes you have made to the profile by clicking the below button
         </div>
         <button
-          className="sc-dmRaPn gwpVlo"
+          className="sc-iBkjds ZgHTu"
+          disabled={true}
           onClick={[Function]}
         >
-          Add Work Experience
+          SAVE CHANGES
         </button>
+        <h2
+          className="sc-dIouRR iyTmtZ"
+        >
+          WORK EXPERIENCE
+        </h2>
+        <div
+          className="sc-dmRaPn iGrUii"
+        >
+          77.9% of employers surveyed consider work experience to be a crucial data point in job applications. So be sure to fill up this section to raise your chances of securing an interview!
+          <button
+            className="sc-hHLeRK iNHRpL"
+            onClick={[Function]}
+          >
+            <svg
+              aria-hidden="true"
+              className="svg-inline--fa fa-circle-plus fa-sm "
+              data-icon="circle-plus"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              style={Object {}}
+              viewBox="0 0 512 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256zM256 368C269.3 368 280 357.3 280 344V280H344C357.3 280 368 269.3 368 256C368 242.7 357.3 232 344 232H280V168C280 154.7 269.3 144 256 144C242.7 144 232 154.7 232 168V232H168C154.7 232 144 242.7 144 256C144 269.3 154.7 280 168 280H232V344C232 357.3 242.7 368 256 368z"
+                fill="currentColor"
+                style={Object {}}
+              />
+            </svg>
+            Add Work Experience
+          </button>
+        </div>
       </div>
     </div>
   </div>

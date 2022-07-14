@@ -1,5 +1,5 @@
 export type WorkExperience = {
-    id: string;
+    id?: string;
     "start-date": string;
     "end-date": string;
     "job-title": string;

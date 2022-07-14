@@ -1,4 +1,4 @@
-import React, { SetStateAction, useCallback } from "react";
+import React, { SetStateAction, useCallback, useEffect } from "react";
 import Button from "../../common/Button";
 import DatePicker from "../../common/DatePicker";
 
@@ -41,6 +41,14 @@ export default function WorkExperienceAddModal(props: Props) {
   function onCancelClick() {
     setIsWorkExperienceModalOpen(false);
   }
+
+  useEffect(() => {
+    workExperience[
+      "company-logo"
+    ] = `https://logo.clearbit.com/${workExperience.company
+      .replace(/\s/g, "")
+      .toLowerCase()}.com?size=60`;
+  });
 
   const updateWorkExperience = useCallback(
     (inputKey: keyof WorkExperience, value: string) => {

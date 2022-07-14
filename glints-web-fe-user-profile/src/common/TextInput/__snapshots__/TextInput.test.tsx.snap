@@ -6,8 +6,11 @@ exports[`TextInput Block renders correctly 1`] = `
 >
   <input
     className="sc-eCYdqJ feQGCx"
+    maxLength={200}
+    min="0"
     onChange={[Function]}
-    type="type"
+    readOnly={false}
+    type="string"
   />
   <label
     className="sc-hKMtZM jtjkLl"

@@ -1,21 +1,34 @@
-import React, { ChangeEvent, useRef } from "react";
+import React, { ChangeEvent, SetStateAction, useRef } from "react";
 
 import { FileInput, Image, ImageContainer } from "./ImageUpload.styles";
 
 import Avatar from "../../assets/avatar.png";
 import Button from "../Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-export default function ImageUpload() {
-  const [fileSelected, setFileSelected] = React.useState<
-    string | ArrayBuffer | null
-  >();
+type Props = {
+  fileSelected: string | ArrayBuffer | null;
+  setFileSelected: React.Dispatch<SetStateAction<string | ArrayBuffer | null | undefined>>;
+};
 
+export default function ImageUpload(props: Props) {
+  const { fileSelected, setFileSelected } = props;
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   function handleButtonClick() {
     fileInputRef.current && fileInputRef.current.click();
+  }
+
+  function getBase64(file: File) {
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      setFileSelected(reader.result);
+    };
+    reader.onerror = function (error) {
+      return;
+    };
   }
 
   function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
@@ -32,7 +45,7 @@ export default function ImageUpload() {
         return;
       }
 
-      setFileSelected(URL.createObjectURL(file));
+      getBase64(file);
     };
 
     reader.readAsText(file);
@@ -41,7 +54,9 @@ export default function ImageUpload() {
   return (
     <ImageContainer>
       <Image alt="" src={fileSelected ? fileSelected.toString() : Avatar} />
-      <Button onClick={handleButtonClick}><FontAwesomeIcon icon={faPlus} size="xs" color={'white'} /> Upload Image</Button>
+      <Button onClick={handleButtonClick}>
+        <FontAwesomeIcon icon={faPlus} size="xs" color={"white"} /> Upload Image
+      </Button>
       <FileInput
         data-testid="file-input"
         ref={fileInputRef}

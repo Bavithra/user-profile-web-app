@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 
 import ImageUpload from "../../common/ImageUpload";
 import TextInput from "../../common/TextInput";
@@ -18,20 +18,29 @@ import WorkExperienceUtil from "../../utils/WorkExperienceUtil";
 import Button from "../../common/Button";
 import { Text } from "../../styles/Common.styles";
 import UserProfileApi from "../../api/UserProfileApi";
+import ConfirmationModal from "../../components/ConfirmationModal";
+import Spinner from "../../common/Spinner";
 
 export default function ProfilePage() {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [age, setAge] = useState<string>();
+  const [fileSelected, setFileSelected] = useState<
+    string | ArrayBuffer | null
+  >();
+
   const [selectedIndex, setSelectedIndex] = useState<number>(-1);
 
   const [isWorkExperienceModalOpen, setIsWorkExperienceModalOpen] =
+    useState(false);
+  const [isUpdateConfirmationModalOpen, setIsUpdateConfirmationOpen] =
     useState(false);
 
   const [workExperiences, setWorkExperiences] = useState<WorkExperience[]>([]);
   const [workExperience, setWorkExperience] = useState<WorkExperience>(
     WorkExperienceUtil.getInitialWorkExperienceInput()
   );
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   function handleAddWorkExperienceClick(
     workExperience: WorkExperience,
@@ -57,20 +66,47 @@ export default function ProfilePage() {
     setEmail(value);
   }
 
+  async function handleEmailBlur() {
+    const response = await UserProfileApi.getUser(email);
+    if (response.data) {
+      setIsUpdateConfirmationOpen(true);
+    }
+  }
+
   function handleAgeChange(value: string) {
     setAge(value);
   }
 
   async function handleProfileSaveClick() {
     try {
+      setIsLoading(true);
+
       const response = await UserProfileApi.getUser(email);
       if (response.data) {
-        setName(response.data.name);
-        setAge(response.data.age);
-        setWorkExperiences(response.data["work-experience"]);
+        const payload = {
+          email: email,
+          name: name,
+          age: age || "",
+          "profile-image": fileSelected?.toString(),
+          "work-experience": workExperiences,
+        };
+
+        await UserProfileApi.updateUser(payload);
+      } else {
+        const payload = {
+          email: email,
+          name: name,
+          age: age || "",
+          "profile-image": fileSelected?.toString(),
+          "work-experience": workExperiences,
+        };
+
+        await UserProfileApi.createUser(payload);
       }
     } catch (e) {
       console.log(e);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -78,7 +114,7 @@ export default function ProfilePage() {
     if (selectedIndex === -1) {
       const value = {
         ...workExperience,
-        id: `${workExperience.company}-${workExperience["start-date"]}-${workExperience["end-date"]}}`,
+        id: "",
       };
       setWorkExperiences([...workExperiences, value]);
     } else {
@@ -86,6 +122,37 @@ export default function ProfilePage() {
       tempArray[selectedIndex] = workExperience;
       setWorkExperiences(tempArray);
     }
+    setIsWorkExperienceModalOpen(false);
+  }
+
+  async function handleConfirmClick() {
+    fetchUserDetails();
+    setIsUpdateConfirmationOpen(false);
+  }
+
+  async function handleConfirmCancelClick() {
+    setIsUpdateConfirmationOpen(false);
+  }
+
+  const fetchUserDetails = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      const response = await UserProfileApi.getUser(email);
+      if (response.data) {
+        setName(response.data.name);
+        setAge(response.data.age);
+        setFileSelected(response.data["profile-image"]);
+        setWorkExperiences(response.data["work-experience"]);
+      }
+    } catch (error) {
+      //Silence error
+    } finally {
+      setIsLoading(false);
+    }
+  }, [email]);
+
+  if (isLoading) {
+    return <Spinner />;
   }
 
   return (
@@ -93,7 +160,10 @@ export default function ProfilePage() {
       {name.length > 0 && <Title> Hello {name}</Title>}
       <ProfilePageContainer>
         <div>
-          <ImageUpload />
+          <ImageUpload
+            fileSelected={fileSelected!}
+            setFileSelected={setFileSelected}
+          />
         </div>
         <DetailsContainer>
           <InputContainer>
@@ -102,6 +172,7 @@ export default function ProfilePage() {
               label="Email*"
               value={email}
               onChange={handleEmailChange}
+              onBlur={handleEmailBlur}
             />
             <TextInput
               label="Age*"
@@ -121,7 +192,7 @@ export default function ProfilePage() {
             }
             onClick={handleProfileSaveClick}
           >
-            SAVE PROFILE
+            SAVE CHANGES
           </Button>
           <WorkExperienceList
             workExperiences={workExperiences}
@@ -136,6 +207,16 @@ export default function ProfilePage() {
           setIsWorkExperienceModalOpen={setIsWorkExperienceModalOpen}
           setWorkExperience={setWorkExperience}
           onSaveButtonClick={handleSaveButtonClick}
+        />
+        <ConfirmationModal
+          action={"Update Existing Profile"}
+          isOpen={isUpdateConfirmationModalOpen}
+          messageTitle={"Profile Exist"}
+          message={
+            "Profile with the same email is already present, Do you want to load and update the existing profile?"
+          }
+          onActionClick={handleConfirmClick}
+          setIsConfirmationModalOpen={handleConfirmCancelClick}
         />
       </ProfilePageContainer>
     </>

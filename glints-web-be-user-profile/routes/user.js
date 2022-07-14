@@ -21,4 +21,20 @@ router.post('/', async function(req, res, next) {
   }
 });
 
+router.patch('/', async function(req, res, next) {
+  try {
+    res.json(await user.updateUser(req.body.user));
+  } catch (err) {
+    res.status(err.statusCode || 500).json({'message': err.message});
+  }
+});
+
+router.delete('/work-experience', async function(req, res, next) {
+  try {
+    res.json(await user.deleteWorkExperience(req.query.id));
+  } catch (err) {
+    res.status(err.statusCode || 500).json({'message': err.message});
+  }
+});
+
 module.exports = router;

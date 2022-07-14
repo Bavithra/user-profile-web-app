@@ -5,5 +5,5 @@ export type UserProfile = {
   email: string;
   age: string;
   'profile-image'?: string;
-  'work-experience'?: WorkExperience;
+  'work-experience'?: WorkExperience[];
 };

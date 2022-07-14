@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Colors } from "../../styles/Colors";
-import { FontSizes } from "../../styles/FontSizes";
 import { FontWeights } from "../../styles/FontWeights";
 
 export const WorkExperienceAddModalContainer = styled.div`

@@ -8,7 +8,7 @@ exports[`DatePicker Block renders correctly 1`] = `
     className="react-datepicker__input-container"
   >
     <div
-      className="sc-ftvSup laBHLg"
+      className="sc-jSMfEi kKVzPW"
       disabled={false}
       onBlur={[Function]}
       onChange={[Function]}
@@ -16,7 +16,7 @@ exports[`DatePicker Block renders correctly 1`] = `
       onFocus={[Function]}
       onKeyDown={[Function]}
       readOnly={false}
-      value=""
+      value="July 2022"
     >
       <div
         onClick={[Function]}
@@ -25,12 +25,16 @@ exports[`DatePicker Block renders correctly 1`] = `
           className="sc-dkzDqf fSUJtn"
         >
           <input
-            className="sc-kDDrLX emimmX"
+            className="sc-eCYdqJ hEfXYP"
+            maxLength={200}
+            min="0"
             onChange={[Function]}
-            type="type"
+            readOnly={false}
+            type="string"
+            value="July 2022"
           />
           <label
-            className="sc-jqUVSM dsSNWu"
+            className="sc-hKMtZM dUWGJI"
           >
             Select Date
           </label>

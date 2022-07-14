@@ -9,7 +9,7 @@ async function getUser(email) {
     up.profile_image as "profile-image",
 
     (SELECT json_agg(json_build_object(
-      'start-date',start_date,'end-date',end_date,'company',company, 'job-title',job_title, 'job-description',job_description)) 
+      'id',id,'start-date',start_date,'end-date',end_date,'company',company, 'job-title',job_title, 'job-description',job_description)) 
       FROM user_work_experience 
       WHERE user_work_experience.user_profile_id = up.id) AS "work-experience"
 
@@ -53,37 +53,89 @@ async function createUser(user) {
 
   const existingUser = await getUser(user.email);
 
-  if (existingUser.length > 0) {
+  if (existingUser && existingUser.length > 0) {
     let error = new Error("The user with email id already present");
     error.statusCode = 409;
 
     throw error;
   } else {
     const result = await db.query(
-      `INSERT INTO user_profile(email, user_full_name, user_age) VALUES ('${user.email}', '${user.name}', ${(user.age)}) RETURNING id`
+      `INSERT INTO user_profile(email, user_full_name, user_age, profile_image) VALUES ('${user.email}', '${user.name}', ${user.age}, '${user["profile-image"]}') RETURNING id`
     );
     const createdUserId = result[0].id;
-    if(createdUserId) {
-      user['work-experience'].forEach(async experience => {
+    if (createdUserId) {
+      user["work-experience"] && user["work-experience"].forEach(async (experience) => {
         await db.query(
           `INSERT INTO user_work_experience(
             user_profile_id, start_date, end_date, company, job_title, job_description) 
             VALUES 
             (${createdUserId}, 
-            '${experience['start-date']}', 
-            '${experience['end-date']}',
-            '${experience['company']}',
-            '${experience['job-title']}',
-            '${experience['job-description']}')`
+            '${experience["start-date"]}', 
+            '${experience["end-date"]}',
+            '${experience["company"]}',
+            '${experience["job-title"]}',
+            '${experience["job-description"]}')`
         );
       });
     }
-    return {id: result[0]}.id;
+    return { id: result[0] }.id;
   }
   return "Created";
+}
+
+async function updateUser(user) {
+  validateCreate(user);
+
+  const result = await db.query(
+    `UPDATE user_profile
+    SET user_full_name = '${user.name}',
+    user_age=${user.age},
+    profile_image='${user["profile-image"]}' WHERE email = '${user.email}' RETURNING id`
+  );
+
+  const createdUserId = result[0].id;
+  if (createdUserId) {
+    user["work-experience"] && user["work-experience"].forEach(async (experience) => {
+      if (experience.id === "") {
+        await db.query(
+          `INSERT INTO user_work_experience(
+              user_profile_id, start_date, end_date, company, job_title, job_description) 
+              VALUES 
+              (${createdUserId}, 
+              '${experience["start-date"]}', 
+              '${experience["end-date"]}',
+              '${experience["company"]}',
+              '${experience["job-title"]}',
+              '${experience["job-description"]}')`
+        );
+      } else {
+        await db.query(
+          `UPDATE user_work_experience
+          SET start_date = '${experience["start-date"]}',
+          end_date='${experience["end-date"]}',
+          company='${experience["company"]}',
+          job_title='${experience["job-title"]}',
+          job_description='${experience["job-description"]}' WHERE id = '${experience.id}'`
+        );
+      }
+    });
+  }
+  return { id: result[0] }.id;
+}
+
+async function deleteWorkExperience(id) {
+  await db.query(
+    `DELETE FROM user_work_experience
+    WHERE id = ${id}
+  `
+  );
+
+  return 'Deleted';
 }
 
 module.exports = {
   getUser,
   createUser,
+  updateUser,
+  deleteWorkExperience,
 };

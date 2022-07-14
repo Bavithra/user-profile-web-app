@@ -15,17 +15,46 @@ import WorkExperienceUtil from "../../utils/WorkExperienceUtil";
 
 type Props = {
   workExperiences: WorkExperience[];
-  onAddWorkExperienceClick: (workExperience: WorkExperience, index: number) => void;
+  onAddWorkExperienceClick: (
+    workExperience: WorkExperience,
+    index: number
+  ) => void;
   onDeleteWorkExperienceClick: (index: number) => void;
 };
 
 export default function WorkExperienceList(props: Props) {
-  const { workExperiences, onAddWorkExperienceClick, onDeleteWorkExperienceClick } = props;
+  const {
+    workExperiences,
+    onAddWorkExperienceClick,
+    onDeleteWorkExperienceClick,
+  } = props;
+
+  function sortByDate(a: WorkExperience, b: WorkExperience) {
+    if (
+      new Date(a["start-date"]).getTime() < new Date(b["start-date"]).getTime()
+    ) {
+      return 1;
+    }
+    if (
+      new Date(a["start-date"]).getTime() > new Date(b["start-date"]).getTime()
+    ) {
+      return -1;
+    }
+    return 0;
+  }
 
   function getWorkExperienceList(workExperiences: WorkExperience[]) {
-    return workExperiences.map((workExperience, index) => {
+    const sortedArray = workExperiences?.sort(sortByDate);
+
+    return sortedArray?.map((workExperience, index) => {
       return (
-        <WorkExperienceListItem key={index} index={index} workExperience={workExperience} onEditClicked={onAddWorkExperienceClick} onDeleteClicked={onDeleteWorkExperienceClick} />
+        <WorkExperienceListItem
+          key={index}
+          index={index}
+          workExperience={workExperience}
+          onEditClicked={onAddWorkExperienceClick}
+          onDeleteClicked={onDeleteWorkExperienceClick}
+        />
       );
     });
   }
@@ -34,20 +63,34 @@ export default function WorkExperienceList(props: Props) {
     <>
       <Title>
         WORK EXPERIENCE
-        {workExperiences.length > 0 && (
-          <LinkButton onClick={() => onAddWorkExperienceClick(WorkExperienceUtil.getInitialWorkExperienceInput(), -1)}>
+        {workExperiences?.length > 0 && (
+          <LinkButton
+            onClick={() =>
+              onAddWorkExperienceClick(
+                WorkExperienceUtil.getInitialWorkExperienceInput(),
+                -1
+              )
+            }
+          >
             <FontAwesomeIcon icon={faCirclePlus} size={"sm"} />
             Add Work Experience
           </LinkButton>
         )}
       </Title>
 
-      {workExperiences.length === 0 && (
+      {(workExperiences === null || workExperiences?.length === 0) && (
         <NoDataContainer>
           77.9% of employers surveyed consider work experience to be a crucial
           data point in job applications. So be sure to fill up this section to
           raise your chances of securing an interview!
-          <LinkButton onClick={() => onAddWorkExperienceClick(WorkExperienceUtil.getInitialWorkExperienceInput(), -1)}>
+          <LinkButton
+            onClick={() =>
+              onAddWorkExperienceClick(
+                WorkExperienceUtil.getInitialWorkExperienceInput(),
+                -1
+              )
+            }
+          >
             <FontAwesomeIcon icon={faCirclePlus} size={"sm"} />
             Add Work Experience
           </LinkButton>

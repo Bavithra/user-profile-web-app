@@ -2,6 +2,7 @@
 
 exports[`Button Block renders correctly 1`] = `
 <button
-  className="sc-bczRLJ fDNaMc"
+  className="sc-bczRLJ fBHdyQ"
+  disabled={false}
 />
 `;

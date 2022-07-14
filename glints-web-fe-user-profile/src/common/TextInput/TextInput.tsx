@@ -9,10 +9,18 @@ type Props = {
   type?: string;
   value?: string;
   readOnly?: boolean;
+  onBlur?: () => void;
 };
 
 export default function TextInput(props: Props) {
-  const { label, value, readOnly = false, type = "string", onChange } = props;
+  const {
+    label,
+    value,
+    readOnly = false,
+    type = "string",
+    onChange,
+    onBlur,
+  } = props;
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     onChange(e.target.value);
@@ -34,6 +42,7 @@ export default function TextInput(props: Props) {
         value={value}
         hasValue={hasValue()}
         onChange={handleChange}
+        onBlur={onBlur}
         maxLength={MAX_TEXT_INPUT}
         min="0"
       />

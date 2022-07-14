@@ -10,7 +10,8 @@ exports[`ImageUpload Block renders correctly 1`] = `
     src="avatar.png"
   />
   <button
-    className="sc-hKMtZM dnvXTe"
+    className="sc-hKMtZM lKwCO"
+    disabled={false}
     onClick={[Function]}
   >
     <svg
