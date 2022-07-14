@@ -13,6 +13,7 @@ This application is to enter user details Name, Email, Profile picture, Age and 
 - [Node](https://nodejs.org/en/)
 - [PostgreSQL](https://www.postgresql.org/)
 - [ElephantSQL](https://www.elephantsql.com/)
+- [Typescript](https://www.typescriptlang.org/)
 
 ## 💡 Features
 
