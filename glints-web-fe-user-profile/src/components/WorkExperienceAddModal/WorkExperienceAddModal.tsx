@@ -143,7 +143,7 @@ export default function WorkExperienceAddModal(props: Props) {
             <CompanyLogoTitle>
               logo
               <img
-                alt="Click here or type the company name to upload"
+                alt="logo"
                 src={workExperience["company-logo"]}
                 onError={(e) => {
                   updateWorkExperience(

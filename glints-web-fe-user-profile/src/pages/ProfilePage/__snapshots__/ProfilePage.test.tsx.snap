@@ -2,7 +2,7 @@
 
 exports[`ProfilePage Block renders correctly 1`] = `
 <div
-  className="sc-bZkfAO lTGee"
+  className="sc-cCsOjp bEMWOP"
 >
   <div>
     <div
@@ -48,10 +48,10 @@ exports[`ProfilePage Block renders correctly 1`] = `
     </div>
   </div>
   <div
-    className="sc-kLLXSd bGXPbi"
+    className="sc-ciZhAO jCfeVY"
   >
     <div
-      className="sc-ikZpkk eKcSBs"
+      className="sc-jdAMXn iNUwlw"
     >
       <div
         className="sc-gKXOVf iejHYC"
@@ -111,7 +111,7 @@ exports[`ProfilePage Block renders correctly 1`] = `
     <div
       className="sc-jSMfEi hpfud"
     >
-      Please save all the changes you have made to the profile by clicking the below button
+      Please remember to save all the changes(name, image, email, age and work experience) you have made to the profile by clicking the below button
     </div>
     <button
       className="sc-hKMtZM kJKxQG"
@@ -121,16 +121,16 @@ exports[`ProfilePage Block renders correctly 1`] = `
       SAVE CHANGES
     </button>
     <h2
-      className="sc-fnykZs fgxqkd"
+      className="sc-bBrHrO kPQnaV"
     >
       WORK EXPERIENCE
     </h2>
     <div
-      className="sc-bjUoiL ehsFp"
+      className="sc-cxabCf jmzzBL"
     >
       77.9% of employers surveyed consider work experience to be a crucial data point in job applications. So be sure to fill up this section to raise your chances of securing an interview!
       <button
-        className="sc-fEOsli dokDSl"
+        className="sc-ivTmOn jBqndQ"
         onClick={[Function]}
       >
         <svg

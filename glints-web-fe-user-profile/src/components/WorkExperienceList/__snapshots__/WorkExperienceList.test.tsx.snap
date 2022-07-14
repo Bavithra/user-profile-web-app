@@ -3,11 +3,11 @@
 exports[`WorkExperienceListItem Block renders correctly 1`] = `
 Array [
   <h2
-    className="sc-papXJ ckBXIZ"
+    className="sc-fEOsli uCszU"
   >
     WORK EXPERIENCE
     <button
-      className="sc-jqUVSM iPsvop"
+      className="sc-bjUoiL etMWPY"
       onClick={[Function]}
     >
       <svg
@@ -31,39 +31,39 @@ Array [
     </button>
   </h2>,
   <div
-    className="sc-bczRLJ ehiAyy"
+    className="sc-jqUVSM fORogz"
   >
     <div
-      className="sc-gsnTZi eIjAXz"
+      className="sc-kDDrLX jrukGD"
     />
     <div
-      className="sc-dkzDqf ceMbvl"
+      className="sc-iqcoie bXMORL"
     />
     <div
-      className="sc-hKMtZM iPrNWS"
+      className="sc-crXcEl hivGoA"
     >
       <img
         alt="logo"
         onError={[Function]}
-        src="https://logo.clearbit.com/.com?size=60"
+        src=""
       />
       <div
-        className="sc-eCYdqJ eWNIBa"
+        className="sc-evZas eMyAwV"
       >
         <h3 />
         <div />
         <div
-          className="sc-jSMfEi cWWNFb"
+          className="sc-breuTD fVoyIl"
         >
            - 
         </div>
       </div>
       <div
-        className="sc-iBkjds jCmcnU"
+        className="sc-hAZoDl dvWNfh"
       >
         <svg
           aria-hidden="true"
-          className="svg-inline--fa fa-pen-to-square fa-lg sc-gKXOVf hnQMec"
+          className="svg-inline--fa fa-pen-to-square fa-lg sc-ksZaOG bXXYSI"
           data-icon="pen-to-square"
           data-prefix="fas"
           focusable="false"
@@ -81,7 +81,7 @@ Array [
         </svg>
         <svg
           aria-hidden="true"
-          className="svg-inline--fa fa-trash fa-lg sc-gKXOVf hnQMec"
+          className="svg-inline--fa fa-trash fa-lg sc-ksZaOG bXXYSI"
           color="#E24140"
           data-icon="trash"
           data-prefix="fas"
