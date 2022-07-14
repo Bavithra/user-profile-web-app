@@ -13,3 +13,11 @@ This application is to enter user details Name, Email, Profile picture, Age and 
 - [Node](https://nodejs.org/en/)
 - [PostgreSQL](https://www.postgresql.org/)
 - [ElephantSQL](https://www.elephantsql.com/)
+
+## 💡 Features
+
+- Able to enter user datails like Name, Email, Profile picture, Age and Work experiences
+- Able to Edit all the information provided
+- Able to fetch the existing information by entering the email -> upon entering email and clicking outside the app will check if there are existing profile for the same email id and it will fetch the details if present
+- While entering company name, the company logo will automatically be loaded via Clearbit API
+- Used Redux Persist so the data will be stored incase of connection loss and will persist
