@@ -36,3 +36,17 @@ Backend is Hosted in Heroku
 
 - Web App -> https://gleaming-beignet-d30838.netlify.app/
 - Backend -> https://glints-web-be-user-profile.herokuapp.com
+
+## 📹 Demo
+- Create new user profile
+
+![ezgif-2-d75295457d](https://user-images.githubusercontent.com/3985553/179118058-bc7d8746-9835-4118-95d6-df3e993e4f52.gif)
+
+- Fetching and Editing existing user profile
+
+![ddd](https://user-images.githubusercontent.com/3985553/179118185-043dbf6d-10a9-456c-93db-9deeec0b8db6.gif)
+
+
+
+
+
