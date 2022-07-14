@@ -17,9 +17,11 @@ import {
 import WorkExperienceUtil from "../../utils/WorkExperienceUtil";
 import Button from "../../common/Button";
 import { Text } from "../../styles/Common.styles";
+import UserProfileApi from "../../api/UserProfileApi";
 
 export default function ProfilePage() {
   const [name, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [age, setAge] = useState<string>();
   const [selectedIndex, setSelectedIndex] = useState<number>(-1);
 
@@ -47,16 +49,29 @@ export default function ProfilePage() {
     setWorkExperiences(tempArray);
   }
 
-  function handleLastNameChange(value: string) {
+  function handleNameChange(value: string) {
     setName(value);
+  }
+
+  function handleEmailChange(value: string) {
+    setEmail(value);
   }
 
   function handleAgeChange(value: string) {
     setAge(value);
   }
 
-  function handleProfileSaveClick() {
-    //TODO: implement call to post api
+  async function handleProfileSaveClick() {
+    try {
+      const response = await UserProfileApi.getUser(email);
+      if (response.data) {
+        setName(response.data.name);
+        setAge(response.data.age);
+        setWorkExperiences(response.data["work-experience"]);
+      }
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   function handleSaveButtonClick(workExperience: WorkExperience) {
@@ -82,10 +97,11 @@ export default function ProfilePage() {
         </div>
         <DetailsContainer>
           <InputContainer>
+            <TextInput label="Name*" value={name} onChange={handleNameChange} />
             <TextInput
-              label="Name*"
-              value={name}
-              onChange={handleLastNameChange}
+              label="Email*"
+              value={email}
+              onChange={handleEmailChange}
             />
             <TextInput
               label="Age*"
@@ -100,7 +116,9 @@ export default function ProfilePage() {
           </Text>
 
           <Button
-            isDisable={name === "" || age === undefined || age === ''}
+            isDisable={
+              name === "" || email === "" || age === undefined || age === ""
+            }
             onClick={handleProfileSaveClick}
           >
             SAVE PROFILE

@@ -4,6 +4,6 @@ export type WorkExperience = {
     "end-date": string;
     "job-title": string;
     company: string;
-    "company-logo": string;
+    "company-logo"?: string;
     "job-description": string;
   };
