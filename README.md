@@ -32,7 +32,7 @@ Web App frontend is Hosted using Netlify
 Backend is Hosted in Heroku 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://glints-web-be-user-profile.herokuapp.com)
 
-## 🔎 Hosting Links
+## 🔗 Hosting Links
 
-Web App -> https://gleaming-beignet-d30838.netlify.app/
-Backend -> https://glints-web-be-user-profile.herokuapp.com
+- Web App -> https://gleaming-beignet-d30838.netlify.app/
+- Backend -> https://glints-web-be-user-profile.herokuapp.com
