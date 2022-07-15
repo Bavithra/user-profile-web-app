@@ -5,6 +5,7 @@ import Spinner from "../../common/Spinner";
 import { Colors } from "../../styles/Colors";
 
 import { WorkExperience } from "../../types/WorkExperience.type";
+import WorkExperienceUtil from "../../utils/WorkExperienceUtil";
 import ConfirmationModal from "../ConfirmationModal";
 import {
   ActionIcon,
@@ -34,9 +35,7 @@ export default function WorkExperienceListItem(props: Props) {
 
   useEffect(() => {
     try {
-      setLogo(`https://logo.clearbit.com/${workExperience.company
-        .replace(/\s/g, "")
-        .toLowerCase()}.com?size=60`)
+      setLogo(WorkExperienceUtil.getCompanyLogoUrl(workExperience.company));
     } catch (error) {
       setLogo(
         "https://plugins.jetbrains.com/files/19441/190795/icon/pluginIcon.svg")

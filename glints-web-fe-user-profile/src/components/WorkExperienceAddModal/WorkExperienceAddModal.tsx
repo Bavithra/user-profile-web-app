@@ -1,4 +1,4 @@
-import React, { SetStateAction, useCallback, useEffect } from "react";
+import React, { SetStateAction, useCallback } from "react";
 import Button from "../../common/Button";
 import DatePicker from "../../common/DatePicker";
 
@@ -44,10 +44,7 @@ export default function WorkExperienceAddModal(props: Props) {
 
   const updateWorkExperience = useCallback(
     (inputKey: keyof WorkExperience, value: string) => {
-      setWorkExperience((previousInputs) => ({
-        ...previousInputs,
-        [inputKey]: value,
-      }));
+      setWorkExperience((previousInputs) => (WorkExperienceUtil.update(previousInputs, inputKey, value)));
     },
     [setWorkExperience]
   );
@@ -65,9 +62,7 @@ export default function WorkExperienceAddModal(props: Props) {
     updateWorkExperience("company", value);
     updateWorkExperience(
       "company-logo",
-      `https://logo.clearbit.com/${value
-        .replace(/\s/g, "")
-        .toLowerCase()}.com?size=60`
+      WorkExperienceUtil.getCompanyLogoUrl(value)
     );
   }
 
@@ -111,7 +106,10 @@ export default function WorkExperienceAddModal(props: Props) {
               onChange={(event) =>
                 updateWorkExperience(
                   "end-date",
-                  DateTimeUtil.getEndDate(event.target.checked, workExperience["end-date"])
+                  DateTimeUtil.getEndDate(
+                    event.target.checked,
+                    workExperience["end-date"]
+                  )
                 )
               }
             />

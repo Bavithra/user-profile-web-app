@@ -21,7 +21,12 @@ function shouldSaveButtonDisable(workExperience: WorkExperience) {
   );
 }
 
-function getBase64(file: File, setFile: React.Dispatch<React.SetStateAction<string | ArrayBuffer | null | undefined>>) {
+function getBase64(
+  file: File,
+  setFile: React.Dispatch<
+    React.SetStateAction<string | ArrayBuffer | null | undefined>
+  >
+) {
   let reader = new FileReader();
   reader.readAsDataURL(file);
   reader.onload = function () {
@@ -32,8 +37,27 @@ function getBase64(file: File, setFile: React.Dispatch<React.SetStateAction<stri
   };
 }
 
+function getCompanyLogoUrl(company: string) {
+  return `https://logo.clearbit.com/${company
+    .replace(/\s/g, "")
+    .toLowerCase()}.com?size=60`;
+}
+
+function update(
+  previousInputs: WorkExperience,
+  inputKey: string,
+  value: string
+): WorkExperience {
+  return {
+    ...previousInputs,
+    [inputKey]: value,
+  };
+}
+
 export default {
   getInitialWorkExperienceInput,
   shouldSaveButtonDisable,
-  getBase64
+  getBase64,
+  getCompanyLogoUrl,
+  update,
 };

@@ -41,5 +41,8 @@ exports[`ImageUpload Block renders correctly 1`] = `
     onChange={[Function]}
     type="file"
   />
+  <div>
+    Please upload image less than 40KB due to free tier limit
+  </div>
 </div>
 `;
