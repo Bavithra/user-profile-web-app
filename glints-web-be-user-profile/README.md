@@ -1,20 +1,16 @@
-# glints-web-be-user-profile
+# Backend For User Profile App
 
-A demo Quotes REST API using Node.js and PostgreSQL. Built with Express Js for this [Node.js PostgreSQL tutorial](https://geshan.com.np/blog/2021/01/nodejs-postgresql-tutorial/).
+Backend for User profile app, which inclued CRUD opertions and using PostGresSQL
 
-## Deploy with Heroku
+## 🚀 Run
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/geshan/glints-web-be-user-profile/tree/master)
+```
+npm install
+npm start
+```
 
-## Deploy with Vercel
+## 🚀 Heroku local Run (Heroku-cli must be installed)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fgeshan%2Fglints-web-be-user-profile)
-
-## Deploy to Cyclic
-
-[![Deploy to Cyclic](https://deploy.cyclic.app/button.svg)](https://deploy.cyclic.app/)
-
-### Running on Vercel
-
-At: [https://nodejs-postgresql.vercel.app/user](https://nodejs-postgresql.vercel.app/user)
-
+```
+heroku local web
+```
