@@ -12,7 +12,7 @@ This application is to enter user details Name, Email, Profile picture, Age and 
 
 # Backend ([glints-web-be-user-profile](https://github.com/Bavithra/web-app-user-profile/tree/main/glints-web-fe-user-profile))
 - [Node](https://nodejs.org/en/)
-- [PostgreSQL](https://www.postgresql.org/)
+- [PostgresSQL](https://www.postgresql.org/)
 - [ElephantSQL](https://www.elephantsql.com/)
 
 ## 💡 Features
