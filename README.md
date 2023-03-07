@@ -3,14 +3,14 @@ This application is to enter user details Name, Email, Profile picture, Age and 
 
 ## 💻 Tech Stack
 
-# Frontend ([glints-web-fe-user-profile](https://github.com/Bavithra/web-app-user-profile/tree/main/glints-web-be-user-profile))
+# Frontend
 - [React](https://reactjs.org/)
 - [Redux](https://redux.js.org/)
 - [Styled Components](https://styled-components.com/)
 - [Axios](https://axios-http.com/)
 - [Typescript](https://www.typescriptlang.org/)
 
-# Backend ([glints-web-be-user-profile](https://github.com/Bavithra/web-app-user-profile/tree/main/glints-web-fe-user-profile))
+# Backend
 - [Node](https://nodejs.org/en/)
 - [PostgreSQL](https://www.postgresql.org/)
 - [ElephantSQL](https://www.elephantsql.com/)
